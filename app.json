@@ -7,6 +7,12 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "android": {
+      "package": "com.divyansh1.BloomBrain"
+    },
+    "ios": {
+      "bundleIdentifier": "com.divyansh1.BloomBrain"
+    }
   }
 }
