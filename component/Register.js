@@ -18,6 +18,13 @@ class Register extends Component {
         city: "",
         notEmpty: true,
         passSame: true,
+        mail: true,
+        name: true,
+        pass: true,
+        confirmPass: true,
+        mobile: true,
+        place: true,
+
     }
 
     componentDidMount() {
@@ -50,12 +57,36 @@ class Register extends Component {
 
     onPressRegister = () => {
 
-        console.log("Presses");
+        this.setState({mail: true, name: true, pass: true, confirmPass: true, mobile: true})
 
-        if(this.state.password != this.state.confirmPassword) {
+        console.log("Presses");
+        if(this.state.fullName == "") {
+            this.setState({name: false});
+        }
+
+        if(this.state.email == "") {
+            this.setState({mail: false});
+        }
+
+        if(this.state.password == "") {
+            this.setState({pass: false});
+        }
+
+        if(this.state.confirmPassword == "") {
+            this.setState({confirmPass: false});
+        }
+
+        if(this.state.mob == "") {
+            this.setState({mobile: false});
+        }
+
+
+
+        if(this.state.password != "" && this.state.confirmPassword != "" && this.state.password != this.state.confirmPassword) {
             this.setState({passSame: false})
         }
-        else {
+
+        else if(this.state.fullName != ""&& this.state.email != "" && this.state.password != "" && this.state.confirmPassword != "" && this.state.mob != "" && this.state.password == this.state.confirmPassword){
             let url = 'http://idirect.bloombraineducation.com/idirect/lms/register?username='+this.state.username+'&password='+this.state.password+'&email='+this.state.email+'&phone='+this.state.phone+'&location='+this.state.city
             fetch(url, {
                 method: 'POST',
@@ -149,8 +180,12 @@ class Register extends Component {
                 }}
             >
                 <ScrollView
-                    
-                >
+                    style = {{
+                        // paddingBottom: 90,
+                        // borderWidth: 2,
+                        // borderColor: 'white',
+                        marginBottom: 80
+                }}>                
                     <Animated.View style = {{marginTop: this.state.padding}}>
                     <View style = {{}}>
                     <LinearGradient
@@ -202,7 +237,7 @@ class Register extends Component {
                                 flex: 1,
                                 justifyContent: 'center',
                                 // margin: 10,
-                                paddingTop: Platform.OS == "android" ? 40 : 30,
+                                paddingTop: Platform.OS == "android" ? 40 : 20,
                             }}
                         >
                         {/* <View style = {{
@@ -224,6 +259,7 @@ class Register extends Component {
                                 <TextInput
                                     style = {{ flex: 1, fontFamily: 'poppinsMediumItalic', fontSize: 15, marginLeft: 20, alignItems: 'center', paddingTop: 0, paddingBottom: 0, color: 'white'}}
                                     value = {this.state.fullName}
+                                    autoCapitalize = 'words'
                                     onChangeText = {(value) => {this.onChangeFullName(value)}}
                                     placeholder="Full Name"
                                     placeholderTextColor= '#707070'
@@ -233,6 +269,7 @@ class Register extends Component {
                                     }}
                                 />
                             </View>
+                            {this.state.name ? null : <Text style = {{color: '#FF5252', marginLeft: 30, marginBottom: 5, fontFamily: "poppinsMedium", fontSize: 10}}>Please enter the Name!</Text>}
                             <Text style = {{
                                 marginLeft: 30,
                                 color: '#4ACDF4',
@@ -246,12 +283,16 @@ class Register extends Component {
                                 <TextInput
                                     style={{flex: 1, fontFamily: 'poppinsMediumItalic', fontSize: 15, marginLeft: 20, paddingTop: 0,paddingBottom: 0, alignItems: 'center', color: 'white'}}
                                     value = {this.state.email}
+                                    keyboardAppearance = "dark"
+                                    keyboardType = 'email-address'
+                                    autoCapitalize = 'none'
                                     onChangeText = {(value) => {this.onChangeEmail(value)}}
                                     placeholder="Email"
                                     placeholderTextColor = '#707070'
                                     underlineColorAndroid = "transparent"    
                                 />
                             </View>
+                            {this.state.mail ? null : <Text style = {{color: '#FF5252', marginLeft: 30, marginBottom: 5, fontFamily: "poppinsMedium", fontSize: 10}}>Please enter the Email!</Text>}
                             <Text style = {{
                                 marginLeft: 30,
                                 color: '#4ACDF4',
@@ -265,6 +306,8 @@ class Register extends Component {
                                 <TextInput
                                     style={{flex: 1, fontFamily: 'poppinsMediumItalic', fontSize: 15, paddingTop: 0,paddingBottom: 0, marginLeft: 20, alignItems: 'center', color: 'white'}}
                                     value = {this.state.password}
+                                    autoCapitalize = 'none'
+                                    keyboardAppearance = "dark"
                                     onChangeText = {(value) => {this.onChangePassword(value)}}
                                     placeholder="Password"
                                     placeholderTextColor = '#707070'
@@ -272,19 +315,22 @@ class Register extends Component {
                                     secureTextEntry = {this.state.hidePassword}
                                 />
                             </View>
+                            {this.state.pass ? null : <Text style = {{color: '#FF5252', marginLeft: 30, marginBottom: 5, fontFamily: "poppinsMedium", fontSize: 10}}>Please enter the Password!</Text>}
                             <Text style = {{
                                 marginLeft: 30,
                                 color: '#4ACDF4',
                                 fontFamily: 'poppinsSemiBold',
                                 fontSize: 11,
                                 // marginTop: 15,
-                                marginBottom: 3,
+                                marginBottom: Platform.OS == "android" ? 7 : 3,
                             }}
                             >Confirm Password</Text>
                             <View style={styles.sectionStyle}>
                                 <TextInput
                                     style={{flex: 1, fontFamily: 'poppinsMediumItalic', fontSize: 15, paddingTop: 0,paddingBottom: 0, marginLeft: 20, alignItems: 'center', color: 'white'}}
                                     value = {this.state.confirmPassword}
+                                    autoCapitalize = 'none'
+                                    keyboardAppearance = "dark"
                                     onChangeText = {(value) => {this.onChangeConfirmPassword(value)}}
                                     placeholder="Confirm Password"
                                     placeholderTextColor = '#707070'
@@ -292,6 +338,8 @@ class Register extends Component {
                                     secureTextEntry = {this.state.hideConfirmPassword} 
                                 />
                             </View>
+                            {this.state.passSame ? null : <Text style = {{color: '#FF5252', marginLeft: 30, marginBottom: 5, fontFamily: "poppinsMedium", fontSize: 10}}>Passwords did not match!</Text>}
+                            {this.state.confirmPass ? null : <Text style = {{color: '#FF5252', marginLeft: 30, marginBottom: 5, fontFamily: "poppinsMedium", fontSize: 10}}>Please enter the Password again!</Text>}
                             <Text style = {{
                                 marginLeft: 30,
                                 color: '#4ACDF4',
@@ -305,12 +353,15 @@ class Register extends Component {
                                 <TextInput
                                     style={{flex: 1, fontFamily: 'poppinsMediumItalic', fontSize: 15, paddingTop: 0,paddingBottom: 0, marginLeft: 20, alignItems: 'center', color: 'white'}}
                                     value = {this.state.mob}
+                                    keyboardAppearance = "dark"
+                                    keyboardType = 'numeric'
                                     onChangeText = {(value) => {this.onChangeMob(value)}}
                                     placeholder="Mobile Number"
                                     placeholderTextColor = '#707070'
                                     underlineColorAndroid = "transparent"    
                                 />
                             </View>
+                            {this.state.mobile ? null : <Text style = {{color: '#FF5252', marginLeft: 30, marginBottom: 5, fontFamily: "poppinsMedium", fontSize: 10}}>Please enter the mobile number!</Text>}
                             <Text style = {{
                                 // marginTop: 10,
                                 marginBottom: Platform.OS == "android" ? 7 : 3,
@@ -324,6 +375,8 @@ class Register extends Component {
                                 <TextInput
                                     style={{flex: 1, fontFamily: 'poppinsMediumItalic', fontSize: 15, marginLeft: 20, paddingTop: 0,paddingBottom: 0, justifyContent: "center", color: 'white'}}
                                     value = {this.state.city}
+                                    keyboardAppearance = "dark"
+
                                     onChangeText = {(value) => {this.onChangeCity(value)}}
                                     placeholder="City"
                                     editable = {false}
@@ -341,7 +394,7 @@ class Register extends Component {
                             borderRadius: 15,
                             height: 50,
                             justifyContent: 'center',
-                            marginTop: Platform.OS == "android" ? 50 : 35
+                            marginTop: Platform.OS == "android" ? 30: 15
                         }}
                     >
                         <TouchableOpacity
@@ -397,7 +450,7 @@ const styles = StyleSheet.create({
         margin: 7,
         marginLeft: 25,
         marginRight: 25,
-        marginBottom: Platform.OS == "android" ? 10 : 3,
+        marginBottom: 10,
     },
     imageStyle: {
     //   padding: 10,

@@ -11,6 +11,7 @@ class Hompage extends Component {
 
     componentDidMount() {
         // AsyncStorage.removeItem('email');   
+        
     }
 
     state = {
