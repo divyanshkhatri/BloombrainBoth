@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Image, SafeAreaView, ImageBackground, Dimensions, AsyncStorage} from 'react-native';
+import {View, Text, Image, SafeAreaView, ImageBackground, Dimensions, AsyncStorage, Alert, BackHandler} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import {Actions} from 'react-native-router-flux';
@@ -12,12 +12,22 @@ class Profile extends Component {
         id: "3",
         totalProfile: 10,
         completedProfile: 4,
-        profileData: null,
+        profileData: {},
         superScript: "th"
+    }
+
+    backAction = () => {
+        Actions.Homepage();
+    };
+
+    
+    componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
     }
 
     componentDidMount() {
 
+        BackHandler.addEventListener("hardwareBackPress", this.backAction);
         // AsyncStorage.getItem('id')
         // .then((value) => this.setState({id: value}))
         // .catch((e) => console.log(e));

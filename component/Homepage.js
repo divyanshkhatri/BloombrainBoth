@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Image, Dimensions, SafeAreaView, FlatList, TouchableOpacity, TouchableWithoutFeedback, AsyncStorage, Platform} from 'react-native';
+import {View, Text, Image, Dimensions, SafeAreaView, FlatList, TouchableOpacity, BackHandler,TouchableWithoutFeedback, Alert, AsyncStorage, Platform} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import { LinearGradient } from 'expo-linear-gradient';
 import {Actions} from 'react-native-router-flux';
@@ -9,9 +9,25 @@ class Hompage extends Component {
 
     windowWidth = Dimensions.get('window').width;
 
+    backAction = () => {
+        Alert.alert("Hold on!", "Are you sure you want to Exit?", [
+            {
+                text: "Cancel",
+                onPress: () => null,
+                style: "cancel"
+            },
+            { text: "YES", onPress: () => BackHandler.exitApp() }
+        ]);
+        return true;
+    };
+
+
     componentDidMount() {
-        // AsyncStorage.removeItem('email');   
-        
+        BackHandler.addEventListener("hardwareBackPress", this.backAction);
+    }
+    
+      componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
     }
 
     state = {

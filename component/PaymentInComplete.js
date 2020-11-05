@@ -23,23 +23,12 @@ class PaymentInComplete extends Component {
                         // borderWidth: 2,
                         backgroundColor: "#101010",
                         alignItems: 'center',
+                        justifyContent: 'center',
                         height: 60,
                         borderBottomLeftRadius: 15,
                         borderBottomRightRadius: 15,
                     }}
                 >   
-                <TouchableOpacity
-                    onPress = { () => {Actions.Checkout()} }
-                >
-                    <Image 
-                        style = {{ 
-                            width: 22, 
-                            height: 22,
-                            marginLeft: 20,
-                        }}
-                        source = {require("../images/back.png")} 
-                    />
-                    </TouchableOpacity>
                     <Text
                         style = {{
                             color: 'white',

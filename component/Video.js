@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SafeAreaView, View, Image, Text, Dimensions, AsyncStorage, FlatList, ImageBackground, Platform, TouchableOpacity} from 'react-native';
+import {SafeAreaView, View, Image, Text, Dimensions, AsyncStorage, FlatList, ImageBackground, Platform, BackHandler,TouchableOpacity} from 'react-native';
 import RNPickerSelect, { defaultStyles } from 'react-native-picker-select';
 import { LinearGradient } from 'expo-linear-gradient';
 import Modal from 'react-native-modal';
@@ -7,7 +7,19 @@ import {Actions} from 'react-native-router-flux';
 
 class Video extends Component {
 
+    backAction = () => {
+        Actions.Homepage();
+    };
+
+    
+    componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
+    }
+
+
     componentDidMount() {
+
+        BackHandler.addEventListener("hardwareBackPress", this.backAction);
         AsyncStorage.getItem('subject')
         .then((val) => this.setState({subject: val}))
         .catch((e) => console.log(e))

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, SafeAreaView, Image, TouchableOpacity, TextInput, Keyboard, Dimensions, Animated} from 'react-native';
+import {View, Text, SafeAreaView, Image, TouchableOpacity, TextInput, Alert, Keyboard, Dimensions, Animated, BackHandler} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Dash from 'react-native-dash';
 import { Actions } from 'react-native-router-flux';
@@ -13,7 +13,25 @@ class Checkout extends Component {
         padding: new Animated.Value(0),
     }
 
+    backAction = () => {
+        Alert.alert("Hold on!", "Are you sure you want to go back?", [
+            {
+                text: "Cancel",
+                onPress: () => null,
+                style: "cancel"
+            },
+            { text: "YES", onPress: () => Actions.Payment() }
+        ]);
+        return true;
+    };
+    
+    componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
+    }
+
     componentDidMount() {
+
+        BackHandler.addEventListener("hardwareBackPress", this.backAction);
         this.keyboardDidShowListener = Keyboard.addListener(
             'keyboardDidShow',
             this._keyboardDidShow,
@@ -66,7 +84,7 @@ class Checkout extends Component {
                     }}
                 >   
                 <TouchableOpacity
-                    onPress = { () => {Actions.Payment()} }
+                    onPress = { () => {this.backAction()} }
                 >
                     <Image 
                         style = {{ 

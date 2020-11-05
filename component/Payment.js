@@ -1,11 +1,24 @@
 import React, {Component} from 'react';
-import {View, Text, SafeAreaView, Dimensions, Image, TouchableOpacity, Platform} from 'react-native';
+import {View, Text, SafeAreaView, Dimensions, Image, TouchableOpacity, Platform, BackHandler} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import { LinearGradient } from 'expo-linear-gradient';
 import RNPickerSelect from 'react-native-picker-select';
 import { Actions } from 'react-native-router-flux';
 
 class Payment extends Component {
+
+    backAction = () => {
+        Actions.Profile();
+    };
+
+    
+    componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
+    }
+
+    componentDidMount() {
+        BackHandler.addEventListener("hardwareBackPress", this.backAction);
+    }
 
     state = {
         carouselItems: [

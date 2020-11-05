@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SafeAreaView, View, Image, Text, Dimensions, AsyncStorage, Platform, TouchableOpacity} from 'react-native';
+import {SafeAreaView, View, Image, Text, Dimensions, AsyncStorage, Platform, BackHandler,TouchableOpacity} from 'react-native';
 import DemoLectures from './DemoLectures';
 import { LinearGradient } from 'expo-linear-gradient';
 import Recorded from './Recored';
@@ -26,8 +26,18 @@ class Live extends Component {
         category: "",
     }
 
+    backAction = () => {
+        Actions.Homepage();
+    };
+
+    
+    componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
+    }
+    
     componentDidMount() {
 
+        BackHandler.addEventListener("hardwareBackPress", this.backAction);
         AsyncStorage.getItem('subject')
         .then((val) => this.setState({subject: val}))
         .catch((e) => console.log(e))

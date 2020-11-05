@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, SafeAreaView, Image, Button, Dimensions, ImageBackground, AsyncStorage } from 'react-native';
+import {Text, View, SafeAreaView, Image, Button, Dimensions, ImageBackground, AsyncStorage, BackHandler, Alert } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {Actions} from 'react-native-router-flux';
 
@@ -8,8 +8,26 @@ export default class LandingMain extends Component {
     clicked = () => {
         Actions.Homepage();
     }
+
+    backAction = () => {
+        Alert.alert("Hold on!", "Are you sure you want to Exit?", [
+            {
+                text: "Cancel",
+                onPress: () => null,
+                style: "cancel"
+            },
+            { text: "YES", onPress: () => BackHandler.exitApp() }
+        ]);
+        return true;
+    };
+
+      componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
+    }
     
     componentDidMount() {
+
+        BackHandler.addEventListener("hardwareBackPress", this.backAction);
         AsyncStorage.getItem('email')
         .then((value) => console.log(value))
         .catch((e) => console.log(e) )

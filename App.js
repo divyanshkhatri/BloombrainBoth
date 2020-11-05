@@ -38,22 +38,22 @@ export default function App() {
     // <View>
       <Router>
         <Scene key = "root">
-          <Scene type = "reset" key = "Landing" component = {Landing} title = "Landing" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} initial/>
-          <Scene type = "reset" key = "LandingMain" component = {LandingMain} title = "LandingMain" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
-          <Scene type = "reset" key = "Signin" component = {Signin} title = "Signin" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
-          <Scene type = "reset" type = "reset" key = "Payment" component = {Payment} title = "Payment" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
-          <Scene type = "reset" key = "Checkout" component = {Checkout} title = "Checkout" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
-          <Scene type = "reset" key = "PaymentComplete" component = {PaymentComplete} title = "PaymentComplete" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
-          <Scene type = "reset" key = "PaymentInComplete" component = {PaymentInComplete} title = "PaymentInComplet" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
-          <Scene type = "reset" key = "Register" component = {Register} title = "Register" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
-          <Scene type = "reset" key = "Profile" component = {Profile} title = "Profile" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
-          <Scene type = "reset" key = "Favourite" component = {Favourite} title = "Favourite" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
-          <Scene type = "reset" key = "BottomNavigator" component = {BottomNavigator} title = "BottomNavigator" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null}/>
-          <Scene type = "reset" key = "Homepage" component = {Homepage} title = "homepage" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null}/>
-          <Scene type = "reset" key = "subject" component = {Subject} title = "subject" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null}/>
-          <Scene type = "reset" key = "Video" component = {Video} title = "Video" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null}/>
-          <Scene type = "reset" key = "Test" component = {Test} title = "Test" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null}/>
-          <Scene type = "reset" key = "Live" component = {Live} title = "Live" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null}/>
+          <Scene key = "LandingMain" component = {LandingMain} title = "LandingMain" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
+          <Scene key = "Landing" component = {Landing} title = "Landing" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} initial/>
+          <Scene key = "Signin" component = {Signin} title = "Signin" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
+          <Scene key = "Payment" component = {Payment} title = "Payment" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
+          <Scene key = "Checkout" component = {Checkout} title = "Checkout" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
+          <Scene key = "PaymentComplete" component = {PaymentComplete} title = "PaymentComplete" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
+          <Scene key = "PaymentInComplete" component = {PaymentInComplete} title = "PaymentInComplet" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
+          <Scene key = "Register" component = {Register} title = "Register" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
+          <Scene key = "Profile" component = {Profile} title = "Profile" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
+          <Scene key = "Favourite" component = {Favourite} title = "Favourite" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
+          <Scene key = "BottomNavigator" component = {BottomNavigator} title = "BottomNavigator" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null}/>
+          <Scene key = "Homepage" component = {Homepage} title = "homepage" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null}/>
+          <Scene key = "subject" component = {Subject} title = "subject" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null}/>
+          <Scene key = "Video" component = {Video} title = "Video" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null}/>
+          <Scene key = "Test" component = {Test} title = "Test" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null}/>
+          <Scene key = "Live" component = {Live} title = "Live" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null}/>
           
 			{/* <Scene key =  */}
 

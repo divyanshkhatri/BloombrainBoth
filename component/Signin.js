@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Image, SafeAreaView, TextInput, Animated, Keyboard, TouchableOpacity, StyleSheet, AsyncStorage,} from 'react-native';
+import {View, Text, Image, SafeAreaView, TextInput, Animated, Keyboard, TouchableOpacity, StyleSheet, BackHandler, AsyncStorage,} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 
 class Signin extends Component {
@@ -14,8 +14,8 @@ class Signin extends Component {
 
     }
 
-
     componentDidMount() {
+
         this.keyboardDidShowListener = Keyboard.addListener(
           'keyboardDidShow',
           this._keyboardDidShow,
@@ -27,6 +27,7 @@ class Signin extends Component {
     }
 
     componentWillUnmount() {
+
         this.keyboardDidShowListener.remove();
         this.keyboardDidHideListener.remove();
     }

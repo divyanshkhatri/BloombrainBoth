@@ -1,8 +1,22 @@
 import React, {Component} from 'react';
-import {View, Text, SafeAreaView} from 'react-native';
+import {View, Text, SafeAreaView, BackHandler} from 'react-native';
+import {Actions} from 'react-native-router-flux';
 
 class Test extends Component {
 
+    backAction = () => {
+        Actions.Homepage();
+    };
+
+    
+    componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
+    }
+
+    componentDidMount() {
+        BackHandler.addEventListener("hardwareBackPress", this.backAction);
+    }
+    
     render() {
         return (
             <SafeAreaView
