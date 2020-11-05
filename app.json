@@ -1,0 +1,22 @@
+{
+  "name": "BloomBrain",
+  "displayName": "BloomBrain",
+  "expo": {
+    "name": "BloomBrain",
+    "slug": "BloomBrain",
+    "splash": {
+      "backgroundColor": "#000000",
+      "image": "./images/img.png"
+    },
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "package": "com.divyansh1.BloomBrain"
+    },
+    "ios": {
+      "bundleIdentifier": "com.divyansh1.BloomBrain"
+    }
+  }
+}
