@@ -11,7 +11,6 @@ class Signin extends Component {
         valid: true,
         registered: true,
         notEmpty: true,
-
     }
 
     componentDidMount() {
@@ -51,6 +50,7 @@ class Signin extends Component {
                 
                 if(responseJson["success"] === 200){
                     AsyncStorage.setItem('email', JSON.stringify(responseJson.email));
+                    AsyncStorage.setItem('id', JSON.stringify(responseJson.id));
                     AsyncStorage.getItem('email')
                     .then((value) => {
                         console.log("email" + value)

@@ -285,6 +285,7 @@ class Recorded extends Component {
                                             ListHeaderComponent = {<View style = {{marginBottom: 15}}></View>}
                                             ListFooterComponent = {<View style = {{marginBottom: 40}}></View>}
                                             data = {this.state.classes[val].urlVideos}
+                                            keyExtractor = {({item}) => item.id}
                                             renderItem = {({item}) => {
         
                                                     return (
@@ -354,7 +355,7 @@ class Recorded extends Component {
                                                }
                                             }
         
-                                            keyExtractor = {(item) => item._id}
+                                            keyExtractor = {({item}) => item._id}
                                         /> 
                                     </View>
                                 )

@@ -9,11 +9,12 @@ class Profile extends Component {
     windowWidth = Dimensions.get('window').width;
 
     state = {
-        id: "3",
+        id: null,
         totalProfile: 10,
         completedProfile: 4,
         profileData: {},
-        superScript: "th"
+        superScript: "th",
+        username: ""
     }
 
     backAction = () => {
@@ -28,34 +29,38 @@ class Profile extends Component {
     componentDidMount() {
 
         BackHandler.addEventListener("hardwareBackPress", this.backAction);
-        // AsyncStorage.getItem('id')
-        // .then((value) => this.setState({id: value}))
-        // .catch((e) => console.log(e));
 
-        let url = 'http://idirect.bloombraineducation.com/idirect/lms/profile?id='+this.state.id;
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
+        AsyncStorage.getItem('id')
+        .then((value) => {
+            this.setState({id: value})
+            let url = 'http://idirect.bloombraineducation.com/idirect/lms/profile?id='+this.state.id;
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
             })
             .then((response) => response.json())
             .then((responseJson) => {
-                // console.log(responseJson);
+                console.log(responseJson);
+                this.setState({username: responseJson.username})
                 this.setState({profileData: responseJson})
                 if(this.state.profileData["class_data"] === "1") {
-                   this.setState({superScript: "st"})
+                this.setState({superScript: "st"})
                 } else if(this.state.profileData["class_data"] === "2") {
                     this.setState({superScript: "nd"})
                 } else if(this.state.profileData["class_data"] === "3") {
                     this.setState({superScript: "rd"})
                 }
-               console.log(this.state.profileData);
+                this.setState({username: this.state.username.replace(' ', '').toLowerCase()})
+                console.log(this.state.profileData);
             })
             .catch((error) => {
                 this.setState({login: false})
                 console.error(error);
-        });
+            });
+        })
+        .catch((e) => console.log(e));
     }
 
     render() {
@@ -118,7 +123,7 @@ class Profile extends Component {
                                 fontSize: 22,
                                 // lineHeight: 20
                             }}
-                            >Divyansh Khatri
+                            >{this.state.profileData ? this.state.profileData["username"] : null0}
                         </Text>
                         <View style = {{flexDirection: 'row', }}>
                             <Text 
@@ -333,7 +338,7 @@ class Profile extends Component {
                                 <Text
                                     style = {{fontFamily: 'poppinsBold', fontSize: 12, marginLeft: 10, color: '#4ACDF4'}}
                                 >
-                                    {this.state.profileData ? this.state.profileData["username"]: null}
+                                    {this.state.username != "" ? this.state.username: null}
                                 </Text>
 
                             </View>
@@ -447,7 +452,7 @@ class Profile extends Component {
                                 <Text
                                     style = {{fontFamily: 'poppinsBold', fontSize: 12, marginLeft: 10, color: '#4ACDF4'}}
                                 >
-                                    {this.state.profileData ? this.state.profileData["username"]: null}
+                                    {this.state.username != "" ? this.state.username: null}
                                 </Text>
                             </View>
                         </View>

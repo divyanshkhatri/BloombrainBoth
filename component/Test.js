@@ -25,6 +25,7 @@ class Test extends Component {
                     height: '100%',
                     // flexDirection: 'column',
                     backgroundColor: 'black',
+                    alignItems: "center",
                     paddingTop: Platform.OS === 'android' ? 25 : 0
                 }}
             >

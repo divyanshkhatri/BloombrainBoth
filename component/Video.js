@@ -618,7 +618,7 @@ class Video extends Component {
                             <TouchableOpacity
                                 onPress = { () => {
                                     this.setState({
-                                        showModal: false
+                                        academics: false
                                     })
                                     AsyncStorage.setItem('subject', 'Science');
                                     AsyncStorage.setItem('category', 'Academics');
@@ -659,7 +659,7 @@ class Video extends Component {
                             <TouchableOpacity
                                 onPress = { () => {
                                     this.setState({
-                                        showModal: false
+                                        academics: false
                                     })
                                     AsyncStorage.setItem('subject', 'Mathematics');
                                     AsyncStorage.setItem('category', 'Academics');
@@ -712,7 +712,7 @@ class Video extends Component {
                             <TouchableOpacity
                                 onPress = { () => {
                                     this.setState({
-                                        showModal: false
+                                        academics: false
                                     })
                                     AsyncStorage.setItem('subject', 'SST');
                                     AsyncStorage.setItem('category', 'Academics');
@@ -753,7 +753,7 @@ class Video extends Component {
                             <TouchableOpacity
                                 onPress = { () => {
                                     this.setState({
-                                        showModal: false
+                                        academics: false
                                     })
                                     AsyncStorage.setItem('subject', 'English');
                                     AsyncStorage.setItem('category', 'Academics');
@@ -803,7 +803,7 @@ class Video extends Component {
                             <TouchableOpacity
                                 onPress = { () => {
                                     this.setState({
-                                        showModal: false
+                                        academics: false
                                     })
                                     AsyncStorage.setItem('subject', 'EVS');
                                     AsyncStorage.setItem('category', 'Academics');

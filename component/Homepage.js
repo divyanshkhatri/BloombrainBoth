@@ -291,7 +291,7 @@ class Hompage extends Component {
                 <Modal 
                     isVisible = {this.state.invention}
                     animationIn = "pulse"
-                    animationOut = "pulse"
+                    // animationOut = "pulse"
                     transparent = {true}
                     onBackdropPress = {() => this.setState({invention: false})}
                 >   
@@ -474,7 +474,7 @@ class Hompage extends Component {
                 <Modal 
                     isVisible = {this.state.communication}
                     animationIn = "pulse"
-                    animationOut = "pulse"
+                    // animationOut = "pulse"
                     transparent = {true}
                     onBackdropPress = {() => this.setState({communication: false})}
                 >   
@@ -749,7 +749,7 @@ class Hompage extends Component {
                     
                     isVisible = {this.state.academics}
                     animationIn = "pulse"
-                    animationOut = "pulse"
+                    // animationOut = "pulse"
                     onBackdropPress = {() => {this.setState({academics: false})}}
                     transparent = {true}
                     style = {{
@@ -811,7 +811,7 @@ class Hompage extends Component {
                             <TouchableOpacity
                                 onPress = { () => {
                                     this.setState({
-                                        showModal: false
+                                        academics: false
                                     })
                                     AsyncStorage.setItem('subject', 'Science');
                                     AsyncStorage.setItem('category', 'Academics');
@@ -852,7 +852,7 @@ class Hompage extends Component {
                             <TouchableOpacity
                                 onPress = { () => {
                                     this.setState({
-                                        showModal: false
+                                        academics: false
                                     })
                                     AsyncStorage.setItem('subject', 'Mathematics');
                                     AsyncStorage.setItem('category', 'Academics');
@@ -905,7 +905,7 @@ class Hompage extends Component {
                             <TouchableOpacity
                                 onPress = { () => {
                                     this.setState({
-                                        showModal: false
+                                        academics: false
                                     })
                                     AsyncStorage.setItem('subject', 'SST');
                                     AsyncStorage.setItem('category', 'Academics');
@@ -946,7 +946,7 @@ class Hompage extends Component {
                             <TouchableOpacity
                                 onPress = { () => {
                                     this.setState({
-                                        showModal: false
+                                        academics: false
                                     })
                                     AsyncStorage.setItem('subject', 'English');
                                     AsyncStorage.setItem('category', 'Academics');
@@ -996,7 +996,7 @@ class Hompage extends Component {
                             <TouchableOpacity
                                 onPress = { () => {
                                     this.setState({
-                                        showModal: false
+                                        academics: false
                                     })
                                     AsyncStorage.setItem('subject', 'EVS');
                                     AsyncStorage.setItem('category', 'Academics');

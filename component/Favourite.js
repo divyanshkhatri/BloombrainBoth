@@ -113,7 +113,7 @@ class Favourite extends Component {
             it.push("Public Speaking");
         }
         if(it.length === 0) {
-            AsyncStorage.setItem('interest', 'true')
+            AsyncStorage.setItem('interest', 'true') 
             let url = 'http://idirect.bloombraineducation.com/idirect/lms/interest?email='+this.state.email+'&interest=[]&class_data='+this.state.class
             console.log(url)
             fetch(url, {
@@ -134,7 +134,10 @@ class Favourite extends Component {
             );
         }
         else {
-            it = JSON.stringify(it);
+
+            // it = ["mathematics", "science"]
+
+            it = JSON.stringify(it);        // it = "[mathematics", "science"]"
             AsyncStorage.setItem('interest', 'true')
             let url = 'http://idirect.bloombraineducation.com/idirect/lms/interest?email='+this.state.email+'&interest='+it+'&class_data='+this.state.class
             console.log(url)

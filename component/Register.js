@@ -80,14 +80,12 @@ class Register extends Component {
             this.setState({mobile: false});
         }
 
-
-
         if(this.state.password != "" && this.state.confirmPassword != "" && this.state.password != this.state.confirmPassword) {
             this.setState({passSame: false})
         }
 
         else if(this.state.fullName != ""&& this.state.email != "" && this.state.password != "" && this.state.confirmPassword != "" && this.state.mob != "" && this.state.password == this.state.confirmPassword){
-            let url = 'http://idirect.bloombraineducation.com/idirect/lms/register?username='+this.state.username+'&password='+this.state.password+'&email='+this.state.email+'&phone='+this.state.phone+'&location='+this.state.city
+            let url = 'http://idirect.bloombraineducation.com/idirect/lms/register?username='+this.state.fullName+'&password='+this.state.password+'&email='+this.state.email+'&phone='+this.state.phone+'&location='+this.state.city
             fetch(url, {
                 method: 'POST',
                 headers: {
@@ -96,9 +94,10 @@ class Register extends Component {
                 })
                 .then((response) => response.json())
                 .then((responseJson) => {
+                    console.log(responseJson);
                     AsyncStorage.setItem('email', this.state.email);
-                    console.log(responseJson.ID);
-                    AsyncStorage.setItem('id', responseJson.id);
+                    // console.log(responseJson.ID);
+                    AsyncStorage.setItem('id', JSON.stringify(responseJson.ID));
                     Actions.Favourite();
                 })
                 .catch((error) => {
@@ -259,6 +258,7 @@ class Register extends Component {
                                 <TextInput
                                     style = {{ flex: 1, fontFamily: 'poppinsMediumItalic', fontSize: 15, marginLeft: 20, alignItems: 'center', paddingTop: 0, paddingBottom: 0, color: 'white'}}
                                     value = {this.state.fullName}
+                                    keyboardAppearance = "dark"
                                     autoCapitalize = 'words'
                                     onChangeText = {(value) => {this.onChangeFullName(value)}}
                                     placeholder="Full Name"
