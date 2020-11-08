@@ -6,7 +6,7 @@ class Gif extends Component {
 
     state = {
         email: "",
-        time: Platform.OS == "android" ? 3000: 4000,
+        time: Platform.OS == "android" ? 2800 : 4000,
         interest: 'false'
     }
 

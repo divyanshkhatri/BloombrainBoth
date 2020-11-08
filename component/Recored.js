@@ -102,7 +102,10 @@ class Recorded extends Component {
         classes: {
                 "2020-10-31": {
                     _id: "5e12905eb10fe53808d1ca5a",
-                    urlVideos: [{id: '1', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, {id: '2', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: false, time: "3:48"}],  
+                    urlVideos: [
+                        {id: '1', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, 
+                        {id: '2', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: false, time: "3:48"}
+                    ],  
                 },
                 "2020-10-30": {
                     _id: "5e12905eb10fe53808d1ca5a",

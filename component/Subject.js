@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {View, SafeAreaView, Text, Dimensions, Linking, Image, ImageBackground, LogBox, Platform, TouchableOpacity, AsyncStorage, ActivityIndicator} from 'react-native';
-import RNPickerSelect, { defaultStyles } from 'react-native-picker-select';
+import {View, SafeAreaView, Text, Dimensions, Linking, Image, ImageBackground, LogBox, Platform, TouchableOpacity, AsyncStorage, ActivityIndicator, BackHandler} from 'react-native';
+import RNPickerSelect from 'react-native-picker-select';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import {Actions} from 'react-native-router-flux';
@@ -8,7 +8,17 @@ import Modal from 'react-native-modal';
 
 export default class Subject extends Component {
 
+    backAction = () => {
+        Actions.Homepage();
+    };
+
+    
+    componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
+    }
+
     componentDidMount() {
+        BackHandler.addEventListener("hardwareBackPress", this.backAction);
         LogBox.ignoreLogs(['VirtualizedLists should never be nested']);  
         AsyncStorage.getItem('subject')
         .then((val) => this.setState({subject: val}))
@@ -92,7 +102,7 @@ export default class Subject extends Component {
                     // flex: 1,
                     // flexDirection: 'column',
                     backgroundColor: 'black',
-                    // paddingTop: Platform.OS === 'android' ? 0 : 0,
+                    paddingTop: Platform.OS === 'android' ? 40 : 0,
                 }}
             >
                 <ScrollView

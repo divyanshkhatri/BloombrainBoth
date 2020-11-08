@@ -17,6 +17,7 @@ import Checkout from './component/Checkout';
 import PaymentComplete from './component/PaymentComplete';
 import PaymentInComplete from './component/PaymentInComplete';
 import LandingMain from './component/LandingMain';
+import VideoPlayer from './component/VideoPlayer';
 
 export default function App() {
 
@@ -40,6 +41,7 @@ export default function App() {
         <Scene key = "root">
           <Scene type = "reset" key = "Landing" component = {Landing} title = "Landing" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} initial/>
           <Scene type = "reset" key = "LandingMain" component = {LandingMain} title = "LandingMain" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
+          <Scene type = "reset" key = "VideoPlayer" component = {VideoPlayer} title = "VideoPlayer" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
           <Scene type = "reset" key = "Signin" component = {Signin} title = "Signin" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
           <Scene type = "reset" type = "reset" key = "Payment" component = {Payment} title = "Payment" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
           <Scene type = "reset" key = "Checkout" component = {Checkout} title = "Checkout" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />

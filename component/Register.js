@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, SafeAreaView, ScrollView, Dimensions, TouchableOpacity, Keyboard, TextInput, Image, StyleSheet, Platform, Animated, AsyncStorage} from 'react-native';
+import {View, Text, SafeAreaView, ScrollView, Dimensions, TouchableOpacity, Keyboard, TextInput, Image, StyleSheet, Platform, Animated, AsyncStorage, BackHandler,Alert} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Actions } from 'react-native-router-flux';
 import * as Location from 'expo-location';
@@ -28,6 +28,8 @@ class Register extends Component {
     }
 
     componentDidMount() {
+
+        BackHandler.addEventListener("hardwareBackPress", this.backAction);
         let myApiKey = "AIzaSyAPiglxDTELcy1tDJQaE-fa342Pm-VrTqM";
         this.keyboardDidShowListener = Keyboard.addListener(
           'keyboardDidShow',
@@ -85,7 +87,8 @@ class Register extends Component {
         }
 
         else if(this.state.fullName != ""&& this.state.email != "" && this.state.password != "" && this.state.confirmPassword != "" && this.state.mob != "" && this.state.password == this.state.confirmPassword){
-            let url = 'http://idirect.bloombraineducation.com/idirect/lms/register?username='+this.state.fullName+'&password='+this.state.password+'&email='+this.state.email+'&phone='+this.state.phone+'&location='+this.state.city
+            let url = 'http://idirect.bloombraineducation.com/idirect/lms/register?username='+this.state.fullName+'&password='+this.state.password+'&email='+this.state.email+'&phone='+this.state.mob+'&location='+this.state.city
+            console.log(url);
             fetch(url, {
                 method: 'POST',
                 headers: {
@@ -108,7 +111,20 @@ class Register extends Component {
         
     }
 
+    backAction = () => {
+        Alert.alert("Hold on!", "Are you sure you want to Exit?", [
+            {
+                text: "Cancel",
+                onPress: () => null,
+                style: "cancel"
+            },
+            { text: "YES", onPress: () => BackHandler.exitApp() }
+        ]);
+        return true;
+    };
+
     componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
         this.keyboardDidShowListener.remove();
         this.keyboardDidHideListener.remove();
     }

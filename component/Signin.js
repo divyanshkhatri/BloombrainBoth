@@ -13,8 +13,21 @@ class Signin extends Component {
         notEmpty: true,
     }
 
+    backAction = () => {
+        Alert.alert("Hold on!", "Are you sure you want to Exit?", [
+            {
+                text: "Cancel",
+                onPress: () => null,
+                style: "cancel"
+            },
+            { text: "YES", onPress: () => BackHandler.exitApp() }
+        ]);
+        return true;
+    };
+
     componentDidMount() {
 
+        BackHandler.addEventListener("hardwareBackPress", this.backAction);
         this.keyboardDidShowListener = Keyboard.addListener(
           'keyboardDidShow',
           this._keyboardDidShow,
@@ -27,6 +40,7 @@ class Signin extends Component {
 
     componentWillUnmount() {
 
+        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
         this.keyboardDidShowListener.remove();
         this.keyboardDidHideListener.remove();
     }
@@ -51,13 +65,28 @@ class Signin extends Component {
                 if(responseJson["success"] === 200){
                     AsyncStorage.setItem('email', JSON.stringify(responseJson.email));
                     AsyncStorage.setItem('id', JSON.stringify(responseJson.id));
-                    AsyncStorage.getItem('email')
+                    AsyncStorage.getItem('id')
                     .then((value) => {
-                        console.log("email" + value)
+                        let interest_url = 'http://idirect.bloombraineducation.com/idirect/lms/interest_id?id=' + value;
+                        fetch(interest_url, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'multipart/form-data',
+                            },
+                        })
+                        .then((response) => response.json())
+                        .then((responseJson) => {
+                            console.log(responseJson);
+                            if(responseJson.interest === false) {
+                                Actions.Favourite();
+                            } else {
+                                Actions.Homepage();
+                            }
+                        })
+
                     })
-                    .catch((e) => console.log(e));
-                    Actions.Homepage();
-                }
+                    .catch((e) => console.log('key not found'));
+                } 
                 else if(responseJson["success"] === 203)
                     this.setState({registered: false})
                 else if(responseJson["success"] === 205)

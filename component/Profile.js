@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Image, SafeAreaView, ImageBackground, Dimensions, AsyncStorage, Alert, BackHandler} from 'react-native';
+import {View, Text, Image, SafeAreaView, ImageBackground, Dimensions, AsyncStorage, Alert, BackHandler, ActivityIndicator} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import {Actions} from 'react-native-router-flux';
@@ -14,7 +14,8 @@ class Profile extends Component {
         completedProfile: 4,
         profileData: {},
         superScript: "th",
-        username: ""
+        username: "",
+        isLoading: true
     }
 
     backAction = () => {
@@ -27,9 +28,7 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-
         BackHandler.addEventListener("hardwareBackPress", this.backAction);
-
         AsyncStorage.getItem('id')
         .then((value) => {
             this.setState({id: value})
@@ -43,6 +42,7 @@ class Profile extends Component {
             .then((response) => response.json())
             .then((responseJson) => {
                 console.log(responseJson);
+                this.setState({isLoading: false});
                 this.setState({username: responseJson.username})
                 this.setState({profileData: responseJson})
                 if(this.state.profileData["class_data"] === "1") {
@@ -77,8 +77,16 @@ class Profile extends Component {
                     // paddingBottom: 40
                 }}
             >
+                {this.state.isLoading ?  
+                   ( 
+                    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                       <ActivityIndicator size = "large" color={"#fff"} />
+                    </View>
+                    )
+                    : 
+                (
                 <ScrollView>
-                <View style = {{marginTop: Platform.OS == "android" ? 0: 20, backgroundColor: "black", flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}} >
+                <View style = {{marginTop: Platform.OS == "android" ? 10 : 20, backgroundColor: "black", flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}} >
                     <TouchableOpacity onPress = {() => Actions.Homepage()}>
                         <Image style = {{width: 25, height: 25}} source = {require('../images/back.png')} />
                     </TouchableOpacity>
@@ -151,12 +159,14 @@ class Profile extends Component {
                                 fontSize: 9,
                                 marginTop: 15
                             }}>Active Plan</Text>
+                            {this.state.profileData ? (
+                            this.state.profileData.plan != false ? (
                             <View style = {{width: 210, flexDirection: 'row', alignItems: 'center'}}>
                                 <Text style = {{
                                     color: 'white',
                                     fontFamily: "poppinsBold",
                                     fontSize: 10
-                                }}>Personality Development  </Text>
+                                }} >Personality Development </Text>
                                 <Image 
                                     source = {require("../images/dot.png")}
                                     style = {{width: 5, height: 5}}/>
@@ -166,7 +176,16 @@ class Profile extends Component {
                                     fontFamily: 'poppinsBold'
                                 }}>  6 Months
                                 </Text>
-                            </View> 
+                            </View>
+                            ): <Text style = {{
+                                color: '#FF5252',
+                                fontSize: 10,
+                                marginTop: 2,
+                                fontFamily: 'poppinsBold'
+                                }}>No Plans found</Text>
+                            )
+                            : null
+                            }
                         </View>   
                     </View>
                 </View>
@@ -411,20 +430,7 @@ class Profile extends Component {
                                 </Text>
                             </View>
                         </View>
-                    </View>
-                    <View
-                        style = {{marginLeft: 30, marginTop: 30}}    
-                    >
-                        <Text style = {{
-                            fontFamily: 'poppinsBold',
-                            color: 'white',
-                            fontSize: 14,
-                            }}>
-                            Personal Details
-                        </Text>
-                        <View 
-                            style = {{marginTop: 20, flexDirection: 'row'}}
-                        >
+                        <View style = {{marginTop: 20, flexDirection: 'row'}}>
                             <View
                                 style = {{
                                     
@@ -439,92 +445,24 @@ class Profile extends Component {
                                 }}
                             >
                                 <Image 
-                                    source = {require('../images/user.png')}
-                                    style = {{width: 18, height: 20, tintColor: '#4ACDF4'}}
+                                    source = {require('../images/location.png')}
+                                    style = {{width: 22, height: 22, tintColor: '#4ACDF4'}}
                                 />
-                            </View>
-                            <View style = {{justifyContent: 'center'}}>
-                                <Text
-                                    style = {{fontFamily: 'poppinsMedium', fontSize: 10, marginLeft: 10, color: '#4B4B4B', lineHeight: 15}}
-                                >
-                                    Username
-                                </Text>
-                                <Text
-                                    style = {{fontFamily: 'poppinsBold', fontSize: 12, marginLeft: 10, color: '#4ACDF4'}}
-                                >
-                                    {this.state.username != "" ? this.state.username: null}
-                                </Text>
+                                </View>
+                                <View style = {{justifyContent: 'center'}}>
+                                    <Text
+                                        style = {{fontFamily: 'poppinsMedium', fontSize: 10, marginLeft: 10, color: '#4B4B4B', lineHeight: 15}}
+                                    >
+                                        City
+                                    </Text>
+                                    <Text
+                                        style = {{fontFamily: 'poppinsBold', fontSize: 12, marginLeft: 10, color: '#4ACDF4'}}
+                                    >
+                                        {this.state.profileData ? this.state.profileData["location"]: null}
+                                    </Text>
+                                </View>
                             </View>
                         </View>
-                        <View 
-                            style = {{marginTop: 20, flexDirection: 'row'}}
-                        >
-                            <View
-                                style = {{
-                                    
-                                    backgroundColor: "#212121", 
-                                    // borderWidth: 2, 
-                                    // borderColor: 'white',
-                                    width: 38, 
-                                    height: 38, 
-                                    borderRadius: 19, 
-                                    justifyContent: 'center',
-                                    alignItems: 'center'
-                                }}
-                            >
-                                <Image 
-                                    source = {require('../images/phone.png')}
-                                    style = {{width: 18, height: 20, tintColor: '#4ACDF4'}}
-                                />
-                            </View>
-                            <View style = {{justifyContent: 'center'}}>
-                                <Text
-                                    style = {{fontFamily: 'poppinsMedium', fontSize: 10, marginLeft: 10, color: '#4B4B4B', lineHeight: 15}}
-                                >
-                                    Phone Number
-                                </Text>
-                                <Text
-                                    style = {{fontFamily: 'poppinsBold', fontSize: 12, marginLeft: 10, color: '#4ACDF4'}}
-                                >
-                                    {this.state.profileData ? this.state.profileData["phone"]: null}
-                                </Text>
-                            </View>
-                        </View>
-                        <View 
-                            style = {{marginTop: 20, flexDirection: 'row'}}
-                        >
-                            <View
-                                style = {{
-                                    
-                                    backgroundColor: "#212121", 
-                                    // borderWidth: 2, 
-                                    // borderColor: 'white',
-                                    width: 38, 
-                                    height: 38, 
-                                    borderRadius: 19, 
-                                    justifyContent: 'center',
-                                    alignItems: 'center'
-                                }}
-                            >
-                                <Image 
-                                    source = {require('../images/email.png')}
-                                    style = {{width: 21, height: 16, tintColor: '#4ACDF4'}}
-                                />
-                            </View>
-                            <View style = {{justifyContent: 'center'}}>
-                                <Text
-                                    style = {{fontFamily: 'poppinsMedium', fontSize: 10, marginLeft: 10, color: '#4B4B4B', lineHeight: 15}}
-                                >
-                                    E-mail ID
-                                </Text>
-                                <Text
-                                    style = {{fontFamily: 'poppinsBold', fontSize: 12, marginLeft: 10, color: '#4ACDF4'}}
-                                >
-                                    {this.state.profileData ? this.state.profileData["email"]: null}
-                                </Text>
-                            </View>
-                        </View>
-                    </View>
                     <View>
                         <TouchableOpacity
                             style = {{
@@ -561,7 +499,9 @@ class Profile extends Component {
                     </View>
                 </View>
                 </ScrollView>
+                )}
             </SafeAreaView>
+            
         )
     }
 

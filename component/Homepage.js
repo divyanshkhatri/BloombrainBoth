@@ -24,13 +24,36 @@ class Hompage extends Component {
 
     componentDidMount() {
         BackHandler.addEventListener("hardwareBackPress", this.backAction);
+        AsyncStorage.getItem('id')
+        .then((value) => {
+            this.setState({id: value})
+            let url = 'http://idirect.bloombraineducation.com/idirect/lms/profile?id='+this.state.id;
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                // console.log(responseJson);
+                this.setState({profileData: responseJson})
+                console.log(this.state.profileData);
+            })
+            .catch((error) => {
+                this.setState({login: false})
+                console.error(error);
+            });
+        })
+        .catch((e) => console.log(e));
     }
     
-      componentWillUnmount() {
+    componentWillUnmount() {
         BackHandler.removeEventListener("hardwareBackPress", this.backAction);
     }
 
     state = {
+        profileData: {},
         showModalCong: false,
         showModal: false,
         activeIndex:0,
@@ -39,24 +62,69 @@ class Hompage extends Component {
         communication: false,
         carouselItems: [
             {
-                title:"Item 1",
+                "id": 1,
                 image: require("../images/picks.png"),
+                "teacher_name": "Bhavika Chopra", 
+                "video_duration": 32.833333333333336, 
+                "course": "science", 
+                "is_lock": false,
+                "class_data": "2", 
+                "title": "Introduction to Straight Lines", 
+                "description": "science class desc", 
+                "thumbnail_url": "https://www.bloombraineducation.com/assets/images/youtube_logo/2.jpg",
+                "video_url": "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4"
             },
             {
-                title:"Item 2",
-                image: require("../images/picks.png")
+                "id": 2,
+                image: require("../images/picks.png"),
+                "teacher_name": "Bhavika Chopra", 
+                "video_duration": 32.833333333333336, 
+                "course": "science", 
+                "is_lock": false,
+                "class_data": "2", 
+                "title": "Introduction to Straight Lines", 
+                "description": "science class desc", 
+                "thumbnail_url": "https://www.bloombraineducation.com/assets/images/youtube_logo/2.jpg",
+                "video_url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
             },
             {
-                title:"Item 3",
-                image: require("../images/picks.png")
+                "id": 3,
+                image: require("../images/picks.png"),
+                "teacher_name": "Bhavika Chopra", 
+                "video_duration": 32.833333333333336, 
+                "course": "science", 
+                "is_lock": false,
+                "class_data": "2", 
+                "title":  "Introduction to Straight Lines", 
+                "description": "science class desc", 
+                "thumbnail_url": "https://www.bloombraineducation.com/assets/images/youtube_logo/2.jpg",
+                "video_url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
             },
             {
-                title:"Item 4",
-                image: require("../images/picks.png")
+                "id": 4,
+                image: require("../images/picks.png"),
+                "teacher_name": "Bhavika Chopra", 
+                "video_duration": 32.833333333333336, 
+                "course": "science", 
+                "is_lock": false,
+                "class_data": "2", 
+                "title": "Introduction to Straight Lines", 
+                "description": "science class desc", 
+                "thumbnail_url": "https://www.bloombraineducation.com/assets/images/youtube_logo/2.jpg",
+                "video_url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
             },
             {
-                title:"Item 5",
-                image: require("../images/picks.png")
+                "id": 5,
+                image: require("../images/picks.png"),
+                "teacher_name": "Bhavika Chopra", 
+                "video_duration": 32.633333333333336, 
+                "course": "science", 
+                "is_lock": false,
+                "class_data": "2", 
+                "title": "Video 5", 
+                "description": "science class desc", 
+                "thumbnail_url": "https://www.bloombraineducation.com/assets/images/youtube_logo/2.jpg",
+                "video_url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
             },
           ],
         categories: [
@@ -66,7 +134,8 @@ class Hompage extends Component {
                 imageUrl: require('../images/academics.png'),
                 backgroundColor: '#173F14',
                 gradient1: '#4AD240',
-                gradient2: '#177710'
+                gradient2: '#177710',
+
             },
 
             {   
@@ -193,49 +262,54 @@ class Hompage extends Component {
     }
 
     _renderItem({item}){
+        // let a = this.state.carouselItems;
         return (
-            <View style = {{
-                height: 200, 
-                borderRadius: 15, 
-                width: 300, 
-                borderBottomWidth: 60, 
-                borderBottomColor: '#151515'
+            <TouchableOpacity onPress = {() => { 
+                    Actions.push('VideoPlayer',{titlePage: item} );
                 }}>
-                <Image
-                    source = {item.image} 
+                <View style = {{
+                    height: 200, 
+                    borderRadius: 15, 
+                    width: 300, 
+                    borderBottomWidth: 60, 
+                    borderBottomColor: '#151515'
+                    }}>
+                    <Image
+                        source = {item.image} 
+                        style = {{
+                            borderRadius: 15,
+                            borderBottomRightRadius: 0,
+                            borderBottomLeftRadius: 0,
+                            width: 300,
+                            height: 140,
+                            // opacity: 0.9,
+                            // borderBottomWidth: 20,
+                            borderColor: '#ffffff'
+                        }}
+                    />
+                    <Text
                     style = {{
-                        borderRadius: 15,
-                        borderBottomRightRadius: 0,
-                        borderBottomLeftRadius: 0,
-                        width: 300,
-                        height: 140,
-                        // opacity: 0.9,
-                        // borderBottomWidth: 20,
-                        borderColor: '#ffffff'
-                    }}
-                />
-                <Text
-                style = {{
-                    margin: 10,
-                    marginBottom: 0,
-                    fontFamily: "poppinsSemiBold",
-                    fontSize: 16,
-                    // borderWidth: 2,
-                    // borderColor: 'white',
-                    color: 'white'
-                }}>
-                    Vowels and Consonants</Text>
+                        margin: 10,
+                        marginBottom: 0,
+                        fontFamily: "poppinsSemiBold",
+                        fontSize: 16,
+                        // borderWidth: 2,
+                        // borderColor: 'white',
+                        color: 'white'
+                    }}>
+                        Vowels and Consonants</Text>
 
-                <Text
-                style = {{marginLeft: 10,
-                    fontFamily: "poppinsRegular",
-                    fontSize: 10,
-                    // borderWidth: 2,
-                    // borderColor: 'white',
-                    color: '#707070',
-                }}>
-                    English{">"}Class 4</Text>
-            </View>
+                    <Text
+                    style = {{marginLeft: 10,
+                        fontFamily: "poppinsRegular",
+                        fontSize: 10,
+                        // borderWidth: 2,
+                        // borderColor: 'white',
+                        color: '#707070',
+                    }}>
+                        English{">"}Class 4</Text>
+                </View>
+            </TouchableOpacity>
         )
     }
 
@@ -1177,7 +1251,7 @@ class Hompage extends Component {
                             // borderColor: 'white',
                             // borderWidth: 3
                         }}>
-                            Hi Divyansh
+                            Hi {this.state.profileData["username"]}
                         </Text>
                         <Text
                         style = {{
@@ -1275,8 +1349,56 @@ class Hompage extends Component {
                         layout={"default"}
                         ref={ref => this.carousel = ref}
                         data={this.state.carouselItems}
-
-                        renderItem={this._renderItem}
+                        renderItem={({item}) => 
+                        (
+                            <TouchableOpacity onPress = {() => { 
+                                    Actions.push('VideoPlayer',{titlePage: item, videos: this.state.carouselItems} );
+                                }}>
+                                <View style = {{
+                                    height: 200, 
+                                    borderRadius: 15, 
+                                    width: 300, 
+                                    borderBottomWidth: 60, 
+                                    borderBottomColor: '#151515'
+                                    }}>
+                                    <Image
+                                        source = {{uri: item["thumbnail_url"]}} 
+                                        style = {{
+                                            borderRadius: 15,
+                                            borderBottomRightRadius: 0,
+                                            borderBottomLeftRadius: 0,
+                                            width: 300,
+                                            height: 140,
+                                            // opacity: 0.9,
+                                            // borderBottomWidth: 20,
+                                            borderColor: '#ffffff'
+                                        }}
+                                    />
+                                    <Text
+                                    style = {{
+                                        margin: 10,
+                                        marginBottom: 0,
+                                        fontFamily: "poppinsSemiBold",
+                                        fontSize: 16,
+                                        // borderWidth: 2,
+                                        // borderColor: 'white',
+                                        color: 'white'
+                                    }}>
+                                        {item["title"]}</Text>
+                
+                                    <Text
+                                    style = {{marginLeft: 10,
+                                        fontFamily: "poppinsRegular",
+                                        fontSize: 10,
+                                        // borderWidth: 2,
+                                        // borderColor: 'white',
+                                        color: '#707070',
+                                    }}>
+                                        {item.course}{">"}Class {item.class_data}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        )
+                    }
                         sliderWidth= {Dimensions.get('window').width}
                         itemWidth={300}
                         enableMomentum={false}
