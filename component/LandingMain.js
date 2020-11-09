@@ -20,10 +20,6 @@ export default class LandingMain extends Component {
         ]);
         return true;
     };
-
-      componentWillUnmount() {
-        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
-    }
     
     componentDidMount() {
 
@@ -31,6 +27,10 @@ export default class LandingMain extends Component {
         AsyncStorage.getItem('email')
         .then((value) => console.log(value))
         .catch((e) => console.log(e) )
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
     }
 
     render() {

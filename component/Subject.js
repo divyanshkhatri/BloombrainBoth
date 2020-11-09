@@ -10,6 +10,7 @@ export default class Subject extends Component {
 
     backAction = () => {
         Actions.Homepage();
+        return true;
     };
 
     
@@ -102,7 +103,7 @@ export default class Subject extends Component {
                     // flex: 1,
                     // flexDirection: 'column',
                     backgroundColor: 'black',
-                    paddingTop: Platform.OS === 'android' ? 40 : 0,
+                    paddingTop: Platform.OS === 'android' ? 42 : 0,
                 }}
             >
                 <ScrollView
@@ -111,96 +112,181 @@ export default class Subject extends Component {
                     }}
                 >                
                 <View>
-                <LinearGradient
-                        // Button Linear Gradient
-                        colors={[ '#223467', '#2F61EA']}
-                        start={[0, 1]} end={[1, 0]}
-                        style={{ 
-                            paddingLeft: 20, 
-                            paddingRight: 20,
-                            // borderRadius: 5,
-                            width: Dimensions.get('window').width,
-                            // marginLeft: 16,
-                            height: 135,
-                            // borderRadius: 15
-                    }}>
-                        <View style = {{flexDirection: 'row', justifyContent: 'space-between',}}>
-                            <TouchableOpacity
-                                onPress = { () =>{ Actions.replace("Homepage") }}
-                            >
-                                <Image
+                {
+                    Platform.isPad ? 
+                    (
+                    <LinearGradient
+                            // Button Linear Gradient
+                            colors={[ '#223467', '#2F61EA']}
+                            start={[0, 1]} end={[1, 0]}
+                            style={{ 
+                                paddingLeft: 20, 
+                                paddingRight: 20,
+                                // borderRadius: 5,
+                                width: Dimensions.get('window').width,
+                                // marginLeft: 16,
+                                height: 135,
+                                // borderRadius: 15
+                        }}>
+                            <View style = {{flexDirection: 'row', justifyContent: 'space-between',}}>
+                                <TouchableOpacity
+                                    onPress = { () =>{ Actions.replace("Homepage") }}
+                                >
+                                    <Image
 
-                                style = {{
-                                    marginTop: 15,
-                                    // borderWidth: 1, 
-                                    // borderColor: 'white',
-                                    marginLeft: -2,
-                                    width: 30, 
-                                    height: 30}}
-                                source = {require('../images/back.png')}/>
-                            </TouchableOpacity>
-                            <TouchableOpacity 
-                                style = {{
-                                    width: 140,
-                                    // height: 40,
-                                    // borderWidth: 2, 
-                                    // borderColor: 'white',
-                                    // flexDirection: 'row',
-                                    // flex: 1,
-                                    // alignItems: 'flex-end',
-                                    // justifyContent: 'flex-end'
-                                }}
-                                onPress = {() => {this.setState({showModal: true})}}>
-                                <Text style = {{
-                                    paddingTop: Platform.OS == 'ios' ? 4 : 3,
-                                    justifyContent: 'center',
-                                    alignContent: 'center',
-                                    textAlign: 'center', 
-                                    alignSelf: 'center',
-                                    fontFamily: "poppinsSemiBold", 
-                                    color: "white",
-                                    fontSize: 14, 
-                                    marginTop: 15, 
-                                    borderRadius: 15,
-                                    width: 140,
-                                    height: 30,
-                                    overflow: 'hidden',
-                                    // borderColor: 'white', 
-                                    // borderWidth: 2, 
-                                    backgroundColor: "black"
-                                }}>Change Subject</Text>
-                            </TouchableOpacity>
-                        </View>
-                        <Text
-                        style = {{
-                            marginTop: Platform.OS == 'android' ? 0 : 10,
-                            height: Platform.OS == 'android' ? 60: 50,
-                            // borderColor: ,
-                            // borderWidth: 2,
-                            paddingTop: 13,
-                            fontFamily: 'poppinsSemiBold',
-                            color: 'white',
-                            fontSize: 30
-                        }}
-                        >
-                            {this.state.subject}
-                        </Text>
-                        <Text
+                                    style = {{
+                                        marginTop: 15,
+                                        // borderWidth: 1, 
+                                        // borderColor: 'white',
+                                        marginLeft: -2,
+                                        width: 30, 
+                                        height: 30}}
+                                    source = {require('../images/back.png')}/>
+                                </TouchableOpacity>
+                                <TouchableOpacity 
+                                    style = {{
+                                        width: 140,
+                                        // height: 40,
+                                        // borderWidth: 2, 
+                                        // borderColor: 'white',
+                                        // flexDirection: 'row',
+                                        // flex: 1,
+                                        // alignItems: 'flex-end',
+                                        // justifyContent: 'flex-end'
+                                    }}
+                                    onPress = {() => {this.setState({showModal: true})}}>
+                                    <Text style = {{
+                                        paddingTop: Platform.OS == 'ios' ? 4 : 3,
+                                        justifyContent: 'center',
+                                        alignContent: 'center',
+                                        textAlign: 'center', 
+                                        alignSelf: 'center',
+                                        fontFamily: "poppinsSemiBold", 
+                                        color: "white",
+                                        fontSize: 14, 
+                                        marginTop: 15, 
+                                        borderRadius: 15,
+                                        width: 140,
+                                        height: 30,
+                                        overflow: 'hidden',
+                                        // borderColor: 'white', 
+                                        // borderWidth: 2, 
+                                        backgroundColor: "black"
+                                    }}>Change Subject</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <Text
                             style = {{
-                                fontFamily: 'poppinsRegular',
+                                marginTop: Platform.OS == 'android' ? 0 : 10,
+                                height: Platform.OS == 'android' ? 60: 50,
+                                // borderColor: ,
+                                // borderWidth: 2,
+                                paddingTop: 13,
+                                fontFamily: 'poppinsSemiBold',
                                 color: 'white',
-                                fontSize: 15,
-                                paddingTop: Platform.OS == "android" ? 0 : 3,
+                                fontSize: 30
                             }}
-                        >
-                            18 Chapters
-                            
-                        </Text>
-                    </LinearGradient>
-                    
+                            >
+                                {this.state.subject}
+                            </Text>
+                            <Text
+                                style = {{
+                                    fontFamily: 'poppinsRegular',
+                                    color: 'white',
+                                    fontSize: 15,
+                                    paddingTop: Platform.OS == "android" ? 0 : 3,
+                                }}
+                            >
+                                18 Chapters
+        
+                            </Text>
+                        </LinearGradient>
+                    ) :  (
+                        <ImageBackground 
+                            source = {require('../images/mathematics.png')} 
+                            style = {{
+                                width: Dimensions.get('window').width, 
+                                height: 150,
+                                paddingLeft: 20, 
+                                paddingRight: 20,
+                            }}>
+                            <View style = {{flexDirection: 'row', justifyContent: 'space-between',}}>
+                                <TouchableOpacity
+                                    onPress = { () =>{ Actions.replace("Homepage") }}
+                                >
+                                    <Image
+
+                                    style = {{
+                                        marginTop: 15,
+                                        // borderWidth: 1, 
+                                        // borderColor: 'white',
+                                        marginLeft: -2,
+                                        width: 30, 
+                                        height: 30}}
+                                    source = {require('../images/back.png')}/>
+                                </TouchableOpacity>
+                                <TouchableOpacity 
+                                    style = {{
+                                        width: 140,
+                                        // height: 40,
+                                        // borderWidth: 2, 
+                                        // borderColor: 'white',
+                                        // flexDirection: 'row',
+                                        // flex: 1,
+                                        // alignItems: 'flex-end',
+                                        // justifyContent: 'flex-end'
+                                    }}
+                                    onPress = {() => {this.setState({showModal: true})}}>
+                                    <Text style = {{
+                                        paddingTop: Platform.OS == 'ios' ? 4 : 3,
+                                        justifyContent: 'center',
+                                        alignContent: 'center',
+                                        textAlign: 'center', 
+                                        alignSelf: 'center',
+                                        fontFamily: "poppinsSemiBold", 
+                                        color: "white",
+                                        fontSize: 14, 
+                                        marginTop: 15, 
+                                        borderRadius: 15,
+                                        width: 140,
+                                        height: 30,
+                                        overflow: 'hidden',
+                                        // borderColor: 'white', 
+                                        // borderWidth: 2, 
+                                        backgroundColor: "black"
+                                    }}>Change Subject</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <Text
+                            style = {{
+                                marginTop: Platform.OS == 'android' ? 10 : 20,
+                                height: Platform.OS == 'android' ? 60: 50,
+                                // borderColor: ,
+                                // borderWidth: 2,
+                                paddingTop: 13,
+                                fontFamily: 'poppinsSemiBold',
+                                color: 'white',
+                                fontSize: 30
+                            }}
+                            >
+                                {this.state.subject}
+                            </Text>
+                            <Text
+                                style = {{
+                                    fontFamily: 'poppinsRegular',
+                                    color: 'white',
+                                    fontSize: 15,
+                                    paddingTop: Platform.OS == "android" ? 0 : 3,
+                                }}
+                            >
+                                18 Chapters
+        
+                            </Text>
+                        </ImageBackground>
+                    )
+                    }
                 </View>
                 <RNPickerSelect
-
                     placeholder={{
                         label: 'Coordinate Geometry',
                         value: null,

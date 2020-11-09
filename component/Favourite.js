@@ -167,7 +167,7 @@ class Favourite extends Component {
                     height: '100%',
                     // flexDirection: 'column',
                     backgroundColor: 'black',
-                    paddingTop: Platform.OS === 'android' ? 40 : 0,
+                    paddingTop: Platform.OS === 'android' ? 42 : 0,
                     paddingBottom: 20
                 }}
             >
@@ -184,6 +184,8 @@ class Favourite extends Component {
                                 width: Dimensions.get('window').width,
                                 // marginLeft: 16,
                                 height: 115,
+                                justifyContent: 'center',
+                                // alignContent: "center"
                                 // borderRadius: 15
                         }}>
                             <TouchableOpacity
@@ -192,11 +194,11 @@ class Favourite extends Component {
                             </TouchableOpacity>
                             <Text
                             style = {{
-                                marginTop: Platform.OS == 'android' ? 0 : 25,
-                                height: Platform.OS == 'android' ? 60: 50,
+                                // marginTop: Platform.OS == 'android' ? 0 : 25,
+                                // height: Platform.OS == 'android' ? 60: 50,
                                 // borderColor: 'white',
                                 // borderWidth: 2,
-                                paddingTop: 25,
+                                // paddingTop: 20,
                                 fontFamily: 'poppinsBold',
                                 color: 'white',
                                 fontSize: 25,
@@ -207,11 +209,11 @@ class Favourite extends Component {
                             </Text>
                             <Text
                             style = {{
-                                marginTop: Platform.OS == 'android' ? 0 : 25,
-                                height: Platform.OS == 'android' ? 60: 50,
+
+                                // height: Platform.OS == 'android' ? 60: 50,
                                 // borderColor: 'white',
                                 // borderWidth: 2,
-                                marginTop: -2, 
+                                // marginTop: -2, 
                                 // paddingTop: 25,
                                 fontFamily: 'poppinsBold',
                                 color: 'white',
@@ -351,6 +353,13 @@ class Favourite extends Component {
                                     this.setState({science: !this.state.science})
                                 }}
                             >
+                            <View
+                                style = {{
+                                    borderWidth: this.state.science ? 4 : 0,
+                                    borderColor: "white",
+                                    borderRadius: Platform.OS == "android" ? 14 : 14,
+                                }}
+                            >
                             <LinearGradient
                 // Button Linear Gradient
                             colors={[ '#6EDEFF', '#32C1ED', '#1285D1']}
@@ -358,13 +367,14 @@ class Favourite extends Component {
                                 paddingTop: 5, 
                                 alignItems: 'center',
                                 // borderRadius: 5,
-                                width: Platform.OS == "android" ? 170: 150,
-                                // marginLeft: 16,
-                                height: 100,
+                                width: Platform.OS == "android" ? ( this.state.science ?  162 : 170) : (this.state.science ? 142 : 150),
+                                        // marginLeft: 16,
+                                        // overflow: "hidden",
+                                height: this.state.science ? 92 : 100,
                                 borderRadius: 10,
                                 justifyContent: 'center',
-                                borderWidth: this.state.science ? 4 : 0,
-                                borderColor: 'white',
+                                // borderWidth: this.state.science ? 4 : 0,
+                                // borderColor: 'white',
                                 borderRadius: 10,
                                 // overflow: 'hidden'
                         }}>
@@ -384,12 +394,20 @@ class Favourite extends Component {
                                 Science
                             </Text>
                         </LinearGradient>
+                        </View>
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress = { () => {
                                 this.setState({maths: !this.state.maths})
                             }}
                         >
+                            <View
+                                style = {{
+                                    borderWidth: this.state.maths ? 4 : 0,
+                                    borderColor: "white",
+                                    borderRadius: Platform.OS == "android" ? 14 : 14,
+                                }}
+                            >
                             <LinearGradient
                     // Button Linear Gradient
                                 colors={[ '#654FB6', '#24194C']}
@@ -397,13 +415,14 @@ class Favourite extends Component {
                                     paddingTop: 5, 
                                     alignItems: 'center',
                                     borderRadius: 5,
-                                    width: Platform.OS == "android" ? 170: 150,
-                                    // marginLeft: 16,
-                                    height: 100,
+                                    width: Platform.OS == "android" ? ( this.state.maths ?  162 : 170) : (this.state.maths ? 142 : 150),
+                                        // marginLeft: 16,
+                                        // overflow: "hidden",
+                                    height: this.state.maths ? 92 : 100,
                                     borderRadius: 10,
                                     justifyContent: 'center',
-                                    borderWidth: this.state.maths ? 4 : 0,
-                                    borderColor: 'white'
+                                    // borderWidth: this.state.maths ? 4 : 0,
+                                    // borderColor: 'white'
                             }}>
                                 <Image 
                                     source = {require("../images/maths.png")}
@@ -422,6 +441,7 @@ class Favourite extends Component {
                                 </Text>
 
                             </LinearGradient>
+                            </View>
                             </TouchableOpacity>
                         </View>
                         <View
@@ -438,6 +458,13 @@ class Favourite extends Component {
                                     this.setState({sst: !this.state.sst})
                                 }}
                             >
+                            <View 
+                                style = {{
+                                    borderWidth: this.state.sst ? 4 : 0,
+                                    borderColor: "white",
+                                    borderRadius: Platform.OS == "android" ? 14 : 14,
+                                }}
+                            >
                             <LinearGradient
                     // Button Linear Gradient
                                 colors={[ '#EB68F3', '#6E25B6']}
@@ -445,13 +472,14 @@ class Favourite extends Component {
                                     paddingTop: 5, 
                                     alignItems: 'center',
                                     borderRadius: 5,
-                                    width: Platform.OS == "android" ? 170: 150,
-                                    // marginLeft: 16,
-                                    height: 100,
+                                    width: Platform.OS == "android" ? ( this.state.sst ?  162 : 170) : (this.state.sst ? 142 : 150),
+                                        // marginLeft: 16,
+                                        // overflow: "hidden",
+                                    height: this.state.sst ? 92 : 100,
                                     borderRadius: 10,
                                     justifyContent: 'center',
-                                    borderWidth: this.state.sst ? 4 : 0,
-                                    borderColor: 'white'
+                                    // borderWidth: this.state.sst ? 4 : 0,
+                                    // borderColor: 'white'
                             }}>
                                 <Image 
                                     source = {require("../images/sst.png")}
@@ -469,10 +497,18 @@ class Favourite extends Component {
                                     SST
                                 </Text>
                             </LinearGradient>
+                            </View>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 onPress = {() => {
                                     this.setState({eng: !this.state.eng})
+                                }}
+                            >
+                            <View 
+                                style = {{
+                                    borderWidth: this.state.eng ? 4 : 0,
+                                    borderColor: "white",
+                                    borderRadius: Platform.OS == "android" ? 14 : 14,
                                 }}
                             >
                             <LinearGradient
@@ -482,13 +518,14 @@ class Favourite extends Component {
                                     paddingTop: 5, 
                                     alignItems: 'center',
                                     borderRadius: 5,
-                                    width: Platform.OS == "android" ? 170: 150,
-                                    // marginLeft: 16,
-                                    height: 100,
+                                    width: Platform.OS == "android" ? ( this.state.eng ?  162 : 170) : (this.state.eng ? 142 : 150),
+                                        // marginLeft: 16,
+                                        // overflow: "hidden",
+                                    height: this.state.eng ? 92 : 100,
                                     borderRadius: 10,
                                     justifyContent: 'center',
-                                    borderWidth: this.state.eng ? 4 : 0,
-                                    borderColor: 'white'
+                                    // borderWidth: this.state.eng ? 4 : 0,
+                                    // borderColor: 'white'
                             }}>
                                 <Image 
                                     source = {require("../images/eng.png")}
@@ -507,6 +544,7 @@ class Favourite extends Component {
                                     English
                                 </Text>
                             </LinearGradient>
+                            </View>
                             </TouchableOpacity>
                         </View>
                         <View
@@ -525,74 +563,93 @@ class Favourite extends Component {
                                     this.setState({evs: !this.state.evs})
                                 }}
                             >
-                            <LinearGradient
-                    // Button Linear Gradient
-                                colors={['#FFC56E', '#D16B12']}
-                                style={{ 
-                                    paddingTop: 5, 
-                                    alignItems: 'center',
-                                    borderRadius: 5,
-                                    width: Platform.OS == "android" ? 170: 150,
-                                    // marginLeft: 16,
-                                    height: 100,
-                                    borderRadius: 10,
-                                    justifyContent: 'center',
+                            <View>
+                                <View 
+                                style = {{
                                     borderWidth: this.state.evs ? 4 : 0,
-                                    borderColor: 'white'
-                            }}>
-                                <Image 
-                                    source = {require("../images/evs.png")}
-                                    style = {{
-                                        height: 40,
-                                        width: 40
-                                    }}
-                                />
-                                <Text style = {{
-                                    fontFamily: 'poppinsBold',
-                                    fontSize: 14,
-                                    color: '#fff',
-                                    marginTop: 5
+                                    borderColor: "white",
+                                    borderRadius: Platform.OS == "android" ? 14 : 14,
+                                }}> 
+                                <LinearGradient
+                        // Button Linear Gradient
+                                    colors={['#FFC56E', '#D16B12']}
+                                    style={{ 
+                                        paddingTop: 5, 
+                                        alignItems: 'center',
+                                        borderRadius: 5,
+                                        width: Platform.OS == "android" ? ( this.state.evs ?  162 : 170) : (this.state.evs ? 142 : 150),
+                                        // marginLeft: 16,
+                                        // overflow: "hidden",
+                                        height: this.state.evs ? 92 : 100,
+                                        borderRadius: 10,
+                                        justifyContent: 'center',
+                                        borderColor: 'white'
                                 }}>
-                                    EVS
-                                </Text>
-                            </LinearGradient>
+                                    <Image 
+                                        source = {require("../images/evs.png")}
+                                        style = {{
+                                            height: 40,
+                                            width: 40,
+                                            overflow: 'hidden'
+                                        }}
+                                    />
+                                    <Text style = {{
+                                        fontFamily: 'poppinsBold',
+                                        fontSize: 14,
+                                        color: '#fff',
+                                        marginTop: 5
+                                    }}>
+                                        EVS
+                                    </Text>
+                                </LinearGradient>
+                                </View>
+                            </View>
                             </TouchableOpacity>
                             <TouchableOpacity
                                  onPress = {() => {
                                     this.setState({robo: !this.state.robo})
                                 }}
                             >
-                            <LinearGradient
-                    // Button Linear Gradient
-                                colors={[ '#EB68F3', '#6E25B6']}
-                                style={{ 
-                                    paddingTop: 5, 
-                                    alignItems: 'center',
-                                    borderRadius: 5,
-                                    width: Platform.OS == "android" ? 170: 150,
-                                    // marginLeft: 16,
-                                    height: 100,
-                                    borderRadius: 10,
-                                    justifyContent: 'center',
+                            <View
+                                style = {{
                                     borderWidth: this.state.robo ? 4 : 0,
-                                    borderColor: 'white'
-                            }}>
-                                <Image 
-                                    source = {require("../images/robotics.png")}
-                                    style = {{
-                                        height: 40,
-                                        width: 40
-                                    }}
-                                />
-                                <Text style = {{
-                                    fontFamily: 'poppinsBold',
-                                    fontSize: 14,
-                                    color: '#fff',
-                                    marginTop: 5
+                                    borderColor: "white",
+                                    borderRadius: Platform.OS == "android" ? 14 : 14,
+                                }}
+                            >
+                                <LinearGradient
+                        // Button Linear Gradient
+                                    colors={[ '#EB68F3', '#6E25B6']}
+                                    style={{ 
+                                        paddingTop: 5, 
+                                        alignItems: 'center',
+                                        borderRadius: 5,
+                                        width: Platform.OS == "android" ? ( this.state.robo ?  162 : 170) : (this.state.robo ? 142 : 150),
+                                        // marginLeft: 16,
+                                        // overflow: "hidden",
+                                        height: this.state.robo ? 92 : 100,
+                                        borderRadius: 10,
+                                        justifyContent: 'center',
+                                        // borderWidth: this.state.robo ? 4 : 0,
+                                        // borderColor: 'white'
                                 }}>
-                                    Robotics
-                                </Text>
-                            </LinearGradient>
+                                    <Image 
+                                        source = {require("../images/robotics.png")}
+                                        style = {{
+                                            height: 40,
+                                            width: 40
+                                        }}
+                                    />
+                                    <Text style = {{
+                                        fontFamily: 'poppinsBold',
+                                        fontSize: 14,
+                                        color: '#fff',
+                                        marginTop: 5
+                                    }}>
+                                        Robotics
+                                    </Text>
+                                </LinearGradient>
+                            </View>
                             </TouchableOpacity>
                         </View>
                         <View 
@@ -604,43 +661,53 @@ class Favourite extends Component {
                         justifyContent: 'space-around',
                         marginRight: 17
                         }}>
-                           <TouchableOpacity
-                                onPress = {() => {
-                                    this.setState({print: !this.state.print})
-                                }}
-                           >  
-                            <LinearGradient
-                // Button Linear Gradient
-                            colors={[ '#EB68F3', '#6E25B6']}
-                            style={{ 
-                                paddingTop: 5, 
-                                alignItems: 'center',
-                                borderRadius: 5,
-                                width: Platform.OS == "android" ? 170: 150,
-                                // marginLeft: 16,
-                                height: 100,
-                                borderRadius: 10,
-                                justifyContent: 'center',
-                                borderWidth: this.state.print ? 4 : 0,
-                                borderColor: 'white'
-                        }}>
-                            <Image 
-                                source = {require("../images/3d-printer.png")}
+                            <TouchableOpacity
+                                    onPress = {() => {
+                                        this.setState({print: !this.state.print})
+                                    }}
+                            >  
+                            <View
                                 style = {{
-                                    height: 40,
-                                    width: 40,
-                                    tintColor: 'white'
+                                    borderWidth: this.state.print ? 4 : 0,
+                                    borderColor: "white",
+                                    borderRadius: Platform.OS == "android" ? 14 : 14,
                                 }}
-                            />
-                            <Text style = {{
-                                fontFamily: 'poppinsBold',
-                                fontSize: 14,
-                                color: '#fff',
-                                marginTop: 5
+                            >
+                                <LinearGradient
+                    // Button Linear Gradient
+                                colors={[ '#EB68F3', '#6E25B6']}
+                                style={{ 
+                                    paddingTop: 5, 
+                                    alignItems: 'center',
+                                    borderRadius: 5,
+                                    width: Platform.OS == "android" ? ( this.state.print ?  162 : 170) : (this.state.print ? 142 : 150),
+                                        // marginLeft: 16,
+                                        // overflow: "hidden",
+                                    height: this.state.print ? 92 : 100,
+                                    borderRadius: 10,
+                                    justifyContent: 'center',
+                                    overflow: "hidden"
+                                    // borderWidth: this.state.print ? 4 : 0,
+                                    // borderColor: 'white'
                             }}>
-                                3D-Printing
-                            </Text>
-                        </LinearGradient>
+                                <Image 
+                                    source = {require("../images/3d-printer.png")}
+                                    style = {{
+                                        height: 40,
+                                        width: 40,
+                                        tintColor: 'white'
+                                    }}
+                                />
+                                <Text style = {{
+                                    fontFamily: 'poppinsBold',
+                                    fontSize: 14,
+                                    color: '#fff',
+                                    marginTop: 5
+                                }}>
+                                    3D-Printing
+                                </Text>
+                            </LinearGradient>
+                        </View>
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress = { () => {
@@ -650,6 +717,13 @@ class Favourite extends Component {
                                 
                             }}
                         >
+                            <View
+                                style = {{
+                                    borderWidth: this.state.coding ? 4 : 0,
+                                    borderColor: "white",
+                                    borderRadius: Platform.OS == "android" ? 14 : 14,
+                                }}
+                            >
                             <LinearGradient
                     // Button Linear Gradient
                                 colors={[ '#4AD240', '#177710']}
@@ -657,13 +731,14 @@ class Favourite extends Component {
                                     paddingTop: 5, 
                                     alignItems: 'center',
                                     borderRadius: 5,
-                                    width: Platform.OS == "android" ? 170: 150,
-                                    // marginLeft: 16,
-                                    height: 100,
+                                    width: Platform.OS == "android" ? ( this.state.coding ?  162 : 170) : (this.state.coding ? 142 : 150),
+                                        // marginLeft: 16,
+                                        // overflow: "hidden",
+                                    height: this.state.coding ? 92 : 100,
                                     borderRadius: 10,
                                     justifyContent: 'center',
-                                    borderWidth: this.state.coding ? 4 : 0,
-                                    borderColor: 'white'
+                                    // borderWidth: this.state.coding ? 4 : 0,
+                                    // borderColor: 'white'
                             }}>
                                 <Image 
                                     source = {require("../images/coding.png")}
@@ -682,6 +757,7 @@ class Favourite extends Component {
                                 </Text>
 
                             </LinearGradient>
+                            </View>
                             </TouchableOpacity>
                         </View>
                         <View 
@@ -698,38 +774,47 @@ class Favourite extends Component {
                                 this.setState({pd: !this.state.pd})
                             }}
                         >
-                        <LinearGradient
-                // Button Linear Gradient
-                            colors={['#FFC56E', '#D16B12']}
-                            style={{ 
-                                paddingTop: 5, 
-                                alignItems: 'center',
-                                borderRadius: 5,
-                                width: Platform.OS == "android" ? 170: 150,
-                                // marginLeft: 16,
-                                height: 100,
-                                borderRadius: 10,
-                                justifyContent: 'center',
+                        <View
+                            style = {{
                                 borderWidth: this.state.pd ? 4 : 0,
-                                borderColor: 'white'
-                        }}>
-                            <Image 
-                                source = {require("../images/development.png")}
-                                style = {{
-                                    height: 40,
-                                    width: 40
-                                }}
-                            />
-                            <Text style = {{
-                                fontFamily: 'poppinsBold',
-                                fontSize: 14,
-                                color: '#fff',
-                                marginTop: 5,
-                                textAlign: 'center',
+                                borderColor: "white",
+                                borderRadius: Platform.OS == "android" ? 14 : 14,
+                            }}
+                        >
+                            <LinearGradient
+                    // Button Linear Gradient
+                                colors={['#FFC56E', '#D16B12']}
+                                style={{ 
+                                    paddingTop: 5, 
+                                    alignItems: 'center',
+                                    borderRadius: 5,
+                                    width: Platform.OS == "android" ? ( this.state.pd ?  162 : 170) : (this.state.pd ? 142 : 150),
+                                        // marginLeft: 16,
+                                        // overflow: "hidden",
+                                    height: this.state.pd ? 92 : 100,
+                                    borderRadius: 10,
+                                    justifyContent: 'center',
+                                    // borderWidth: this.state.pd ? 4 : 0,
+                                    // borderColor: 'white'
                             }}>
-                                Personality Development
-                            </Text>
-                        </LinearGradient>
+                                <Image 
+                                    source = {require("../images/development.png")}
+                                    style = {{
+                                        height: 40,
+                                        width: 40
+                                    }}
+                                />
+                                <Text style = {{
+                                    fontFamily: 'poppinsBold',
+                                    fontSize: 14,
+                                    color: '#fff',
+                                    marginTop: 5,
+                                    textAlign: 'center',
+                                }}>
+                                    Personality Development
+                                </Text>
+                            </LinearGradient>
+                        </View>
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress = { () => {
@@ -738,40 +823,49 @@ class Favourite extends Component {
                                 })
                             }}
                         >
-                            <LinearGradient
-                    // Button Linear Gradient
-                                colors={[ '#EB68F3', '#6E25B6']}
-                                style={{ 
-                                    paddingTop: 5, 
-                                    alignItems: 'center',
-                                    borderRadius: 5,
-                                    width: Platform.OS == "android" ? 170: 150,
-                                    // marginLeft: 16,
-                                    height: 100,
-                                    borderRadius: 10,
-                                    justifyContent: 'center',
+                            <View
+                                style = {{
                                     borderWidth: this.state.ecg ? 4 : 0,
-                                    borderColor: 'white'
-                            }}>
-                                <Image 
-                                    source = {require("../images/grammar.png")}
-                                    style = {{
-                                        height: 40,
-                                        width: 40,
-                                        tintColor: 'white'
-                                    }}
-                                />
-                                <Text style = {{
-                                    fontFamily: 'poppinsBold',
-                                    fontSize: 14,
-                                    color: '#fff',
-                                    marginTop: 5,
-                                    textAlign: 'center'
+                                    borderColor: "white",
+                                    borderRadius: Platform.OS == "android" ? 14 : 14,
+                                }}
+                            >
+                                <LinearGradient
+                        // Button Linear Gradient
+                                    colors={[ '#EB68F3', '#6E25B6']}
+                                    style={{ 
+                                        paddingTop: 5, 
+                                        alignItems: 'center',
+                                        borderRadius: 5,
+                                        width: Platform.OS == "android" ? ( this.state.ecg ?  162 : 170) : (this.state.ecg ? 142 : 150),
+                                        // marginLeft: 16,
+                                        // overflow: "hidden",
+                                        height: this.state.ecg ? 92 : 100,
+                                        borderRadius: 10,
+                                        justifyContent: 'center',
+                                        // borderWidth: this.state.ecg ? 4 : 0,
+                                        // borderColor: 'white'
                                 }}>
-                                    English Core Grammar
-                                </Text>
+                                    <Image 
+                                        source = {require("../images/grammar.png")}
+                                        style = {{
+                                            height: 40,
+                                            width: 40,
+                                            tintColor: 'white'
+                                        }}
+                                    />
+                                    <Text style = {{
+                                        fontFamily: 'poppinsBold',
+                                        fontSize: 14,
+                                        color: '#fff',
+                                        marginTop: 5,
+                                        textAlign: 'center'
+                                    }}>
+                                        English Core Grammar
+                                    </Text>
 
-                            </LinearGradient>
+                                </LinearGradient>
+                            </View>
                             </TouchableOpacity>
                         </View>
                         <View 
@@ -789,39 +883,46 @@ class Favourite extends Component {
                                     this.setState({ps: !this.state.ps})
                                 }}
                             >
-                            <LinearGradient
-                    // Button Linear Gradient
-                                colors={[ '#6EDEFF', '#32C1ED', '#1285D1']}
-                                style={{ 
-                                    paddingTop: 5, 
-                                    alignItems: 'center',
-                                    borderRadius: 5,
-                                    width: Platform.OS == "android" ? 170: 150,
-                                    // marginLeft: 16,
-                                    height: 100,
-                                    borderRadius: 10,
-                                    justifyContent: 'center',
+                            <View
+                                style = {{
                                     borderWidth: this.state.ps ? 4 : 0,
-                                    borderColor: 'white'
-                            }}>
-                                <Image 
-                                    source = {require("../images/speaking.png")}
-                                    style = {{
-                                        height: 40,
-                                        width: 40,
-                                        tintColor: "white"
-                                    }}
-                                />
-                                <Text style = {{
-                                    fontFamily: 'poppinsBold',
-                                    fontSize: 14,
-                                    color: '#fff',
-                                    marginTop: 5,
-                                    textAlign: 'center',
+                                    borderColor: "white",
+                                    borderRadius: Platform.OS == "android" ? 14 : 14,
+                                }}
+                            >
+                                <LinearGradient
+                        // Button Linear Gradient
+                                    colors={[ '#6EDEFF', '#32C1ED', '#1285D1']}
+                                    style={{ 
+                                        paddingTop: 5, 
+                                        alignItems: 'center',
+                                        borderRadius: 5,
+                                        width: Platform.OS == "android" ? ( this.state.ps ?  162 : 170) : (this.state.ps ? 142 : 150),
+                                        // marginLeft: 16,
+                                        // overflow: "hidden",
+                                        height: this.state.ps ? 92 : 100,
+                                        borderRadius: 10,
+                                        justifyContent: 'center',
                                 }}>
-                                    Public Speaking
-                                </Text>
-                            </LinearGradient>
+                                    <Image 
+                                        source = {require("../images/speaking.png")}
+                                        style = {{
+                                            height: 40,
+                                            width: 40,
+                                            tintColor: "white"
+                                        }}
+                                    />
+                                    <Text style = {{
+                                        fontFamily: 'poppinsBold',
+                                        fontSize: 14,
+                                        color: '#fff',
+                                        marginTop: 5,
+                                        textAlign: 'center',
+                                    }}>
+                                        Public Speaking
+                                    </Text>
+                                </LinearGradient>
+                            </View>
                             </TouchableOpacity>
                         </View>
                         <View

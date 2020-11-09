@@ -105,27 +105,47 @@ class DemoLectures extends Component {
         classes: {
                 "2020-11-02": {
                     _id: "5e12905eb10fe53808d1ca5a",
-                    urlVideos: [{id: '1', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry", teacher: "Rohit Holani", lock: true, time: "3:48"}, {id: '2', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Introduction to straight Lines", teacher: "Rohit Holani", lock: false, time: "3:48"}],  
+                    urlVideos: [{id: '1', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry", teacher: "Rohit Holani", lock: true, time: "3:48"}, 
+                    {id: '2', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Introduction to straight Lines", teacher: "Rohit Holani", lock: false, time: "3:48"}],  
                 },
                 "2020-11-01": {
                     _id: "5e12905eb10fe53808d1ca5b",
-                    urlVideos: [{id: '1', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, {id: '2', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: false, time: "3:48"}],  
+                    urlVideos: [{id: '1', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, 
+                    {id: '2', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: false, time: "3:48"}],  
                 },
                 "2020-10-31": {
                     _id: "5e12905eb10fe53808d1ca5c",
-                    urlVideos: [{id: '1', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, {id: '2', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: false, time: "3:48"}],  
+                    urlVideos: [{id: '1', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, 
+                    {id: '2', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: false, time: "3:48"}],  
                 },
                 "2020-10-30": {
                     _id: "5e12905eb10fe53808d1ca5d",
-                    urlVideos: [{id: '1', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, {id: '2', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: false, time: "3:48"}, {id: '3', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: false, time: "3:48"}, {id: '4', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, {id: '5', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, {id: '6', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}],  
+                    urlVideos: [{id: '1', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, 
+                    {id: '2', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: false, time: "3:48"}, 
+                    {id: '3', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: false, time: "3:48"}, 
+                    {id: '4', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"},
+                    {id: '5', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, 
+                    {id: '6', urls: require('../images/mathswork.png'), date: "2020-10-30", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}],  
                 },
                 "2020-10-29": {
                     _id: "5e12905eb10fe53808d1ca5e",
-                    urlVideos: [{id: '1', urls: require('../images/mathswork.png'), date: "2020-10-29", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, {id: '2', urls: require('../images/mathswork.png'), date: "2020-10-29", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: false, time: "3:48"}, {id: '3', urls: require('../images/mathswork.png'), date: "2020-10-29", date: "2020-10-29", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: false, time: "3:48"}, {id: '4', urls: require('../images/mathswork.png'), date: "2020-10-29", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, {id: '5', urls: require('../images/mathswork.png'), date: "2020-10-29", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, {id: '6', urls: require('../images/mathswork.png'), desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}],  
+                    urlVideos: [
+                        {id: '1', urls: require('../images/mathswork.png'), date: "2020-10-29", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, 
+                        {id: '2', urls: require('../images/mathswork.png'), date: "2020-10-29", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: false, time: "3:48"}, 
+                        {id: '3', urls: require('../images/mathswork.png'), date: "2020-10-29", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: false, time: "3:48"}, 
+                        {id: '4', urls: require('../images/mathswork.png'), date: "2020-10-29", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, 
+                        {id: '5', urls: require('../images/mathswork.png'), date: "2020-10-29", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, 
+                        {id: '6', urls: require('../images/mathswork.png'), date: "2020-10-29", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}],  
                 },
                 "2020-10-28": {
                     _id: "5e12905eb10fe53808d1ca5af",
-                    urlVideos: [{id: '1', urls: require('../images/mathswork.png'), date: "2020-10-28", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, {id: '2', urls: require('../images/mathswork.png'), date: "2020-10-28", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: false, time: "3:48"}, {id: '3', urls: require('../images/mathswork.png'), date: "2020-10-28", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: false, time: "3:48"}, {id: '4', urls: require('../images/mathswork.png'), date: "2020-10-28", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, {id: '5', urls: require('../images/mathswork.png'), date: "2020-10-28", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, {id: '6', urls: require('../images/mathswork.png'), date: "2020-10-28", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}], 
+                    urlVideos: [
+                        {id: '1', urls: require('../images/mathswork.png'), date: "2020-10-28", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, 
+                        {id: '2', urls: require('../images/mathswork.png'), date: "2020-10-28", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: false, time: "3:48"}, 
+                        {id: '3', urls: require('../images/mathswork.png'), date: "2020-10-28", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: false, time: "3:48"}, 
+                        {id: '4', urls: require('../images/mathswork.png'), date: "2020-10-28", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}, 
+                        {id: '5', urls: require('../images/mathswork.png'), date: "2020-10-28", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"},
+                        {id: '6', urls: require('../images/mathswork.png'), date: "2020-10-28", desc: "Coordinate Geometry - Introduction to straight Lines. (Part I)", teacher: "Rohit Holani", lock: true, time: "3:48"}], 
                 },
                 "2020-10-27": {
                     _id: "5e12905eb10fe53808d1ca5g",
@@ -295,7 +315,7 @@ class DemoLectures extends Component {
                                         ListHeaderComponent = {<View style = {{marginBottom: 15}}></View>}
                                         ListFooterComponent = {<View style = {{marginBottom: 40}}></View>}
                                         data = {this.state.classes[val].urlVideos}
-                                        keyExtractor = {({item}) => item.id}
+                                        keyExtractor = {(item) => item.id}
                                         renderItem = {({item}) => {
                                             
                                             if(item != undefined) {
@@ -401,7 +421,6 @@ class DemoLectures extends Component {
                                         }
                                         }
 
-                                        keyExtractor = {({item}) => item.id}
                                     /> 
                                 </View>
                             )

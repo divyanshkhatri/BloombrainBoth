@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Image, SafeAreaView, TextInput, Animated, Keyboard, TouchableOpacity, StyleSheet, BackHandler, AsyncStorage,} from 'react-native';
+import {View, Text, Image, SafeAreaView, TextInput, Animated, Keyboard, TouchableOpacity, StyleSheet, BackHandler, AsyncStorage, Alert} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 
 class Signin extends Component {
@@ -75,9 +75,9 @@ class Signin extends Component {
                             },
                         })
                         .then((response) => response.json())
-                        .then((responseJson) => {
-                            console.log(responseJson);
-                            if(responseJson.interest === false) {
+                        .then((a) => {
+                            console.log(a);
+                            if(a["interest"] === false) {
                                 Actions.Favourite();
                             } else {
                                 Actions.Homepage();
@@ -125,7 +125,7 @@ class Signin extends Component {
                     // marginTop: this.state.padding
                 }}
             >
-                <View style = {{marginTop: 30}}>
+                <View style = {{marginTop: Platform.OS == "android" ? 80 : 30}}>
                     <Image style = {{width: 225, height: 170, alignSelf: 'center',}} source = {require('../images/logo.png')}/>
                     <Animated.View style = {{
                         marginTop: this.state.padding,
@@ -191,9 +191,9 @@ class Signin extends Component {
                             </View>
                         </View>
                         <View style = {{marginLeft: 22, paddingTop: -5}}>
-                            {this.state.valid == false ? <Text style = {{ textAlign: "left", color: "#4ACDF4", fontFamily: "poppinsSemiBold", fontSize: 12}}>Incorrect Username or Password!</Text>: null}
-                            {this.state.registered == false ? <Text style = {{ textAlign: "left", color: "#4ACDF4", fontFamily: "poppinsSemiBold", fontSize: 12}}>User not registered!</Text> : null}
-                            {this.state.notEmpty == false ? <Text style = {{ textAlign: "left", color: "#4ACDF4", fontFamily: "poppinsSemiBold", fontSize: 12}}>Email or Password fields can't be empty!</Text> : null}
+                            {this.state.valid == false ? <Text style = {{ textAlign: "left", color: "#FF5252", fontFamily: "poppinsSemiBold", fontSize: 12}}>Incorrect Username or Password!</Text>: null}
+                            {this.state.registered == false ? <Text style = {{ textAlign: "left", color: "#FF5252", fontFamily: "poppinsSemiBold", fontSize: 12}}>User not registered!</Text> : null}
+                            {this.state.notEmpty == false ? <Text style = {{ textAlign: "left", color: "#FF5252", fontFamily: "poppinsSemiBold", fontSize: 12}}>Email or Password fields can't be empty!</Text> : null}
                         </View>
                         </Animated.View>
                     <View>
@@ -212,7 +212,7 @@ class Signin extends Component {
                     <TouchableOpacity style = {{
                         // flex: 1,
                         width: Platform.OS == "ios" ? 330 : 370,
-                        height: 53,
+                        height: 50,
                         backgroundColor: '#4ACDF4',
                         alignSelf: 'center',
                         justifyContent: 'center',
@@ -235,7 +235,7 @@ class Signin extends Component {
                             fontSize: 15,
                             color: 'white',
                             textAlign: 'center',
-                            marginTop: 50
+                            marginTop: !this.state.notEmpty ? 40 : 50
                         }}>
                         Don't have an account? <Text
 

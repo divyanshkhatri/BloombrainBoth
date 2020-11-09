@@ -56,9 +56,6 @@ export default function App() {
           <Scene type = "reset" key = "Video" component = {Video} title = "Video" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null}/>
           <Scene type = "reset" key = "Test" component = {Test} title = "Test" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null}/>
           <Scene type = "reset" key = "Live" component = {Live} title = "Live" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null}/>
-          
-			{/* <Scene key =  */}
-
         </Scene>
        </Router>
     // </View>

@@ -28,6 +28,7 @@ class Live extends Component {
 
     backAction = () => {
         Actions.Homepage();
+        return true;
     };
 
     

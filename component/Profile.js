@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Image, SafeAreaView, ImageBackground, Dimensions, AsyncStorage, Alert, BackHandler, ActivityIndicator} from 'react-native';
+import {View, Text, Image, SafeAreaView, ImageBackground, Dimensions, AsyncStorage, Alert, BackHandler, ActivityIndicator, Platform} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import {Actions} from 'react-native-router-flux';
@@ -10,8 +10,8 @@ class Profile extends Component {
 
     state = {
         id: null,
-        totalProfile: 10,
-        completedProfile: 4,
+        totalProfile: 5,
+        completedProfile: 0,
         profileData: {},
         superScript: "th",
         username: "",
@@ -19,7 +19,8 @@ class Profile extends Component {
     }
 
     backAction = () => {
-        Actions.Homepage();
+       Actions.Homepage();
+       return true;
     };
 
     
@@ -45,6 +46,22 @@ class Profile extends Component {
                 this.setState({isLoading: false});
                 this.setState({username: responseJson.username})
                 this.setState({profileData: responseJson})
+                this.setState({totalProfile: Object.keys(this.state.profileData).length-1})
+                if(this.state.profileData["class_data"]) {
+                    this.setState({completedProfile: this.state.completedProfile+1})
+                }
+                if(this.state.profileData["email"]) {
+                    this.setState({completedProfile: this.state.completedProfile+1})
+                }
+                if(this.state.profileData["location"]) {
+                    this.setState({completedProfile: this.state.completedProfile+1})
+                }
+                if(this.state.profileData["username"]) {
+                    this.setState({completedProfile: this.state.completedProfile+1})
+                }
+                if(this.state.profileData["phone"]) {
+                    this.setState({completedProfile: this.state.completedProfile+1})
+                }
                 if(this.state.profileData["class_data"] === "1") {
                 this.setState({superScript: "st"})
                 } else if(this.state.profileData["class_data"] === "2") {
@@ -79,16 +96,16 @@ class Profile extends Component {
             >
                 {this.state.isLoading ?  
                    ( 
-                    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                       <ActivityIndicator size = "large" color={"#fff"} />
+                    <View style = {{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                        <Image source={require("../images/loader.gif")} style = {{width: 50, height: 50}} />
                     </View>
                     )
                     : 
                 (
                 <ScrollView>
-                <View style = {{marginTop: Platform.OS == "android" ? 10 : 20, backgroundColor: "black", flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}} >
+                <View style = {{marginTop: Platform.OS == "android" ? 10 : 0, backgroundColor: "black", flexDirection: 'row', justifyContent: 'space-around', alignContent: 'center', alignItems: 'center'}} >
                     <TouchableOpacity onPress = {() => Actions.Homepage()}>
-                        <Image style = {{width: 25, height: 25}} source = {require('../images/back.png')} />
+                        <Image style = {{width: 30, height: 30}} source = {require('../images/back.png')} />
                     </TouchableOpacity>
                     <Text
                         style = {{
@@ -101,7 +118,7 @@ class Profile extends Component {
                             marginLeft: 24
                         }}
                     >My Profile</Text>
-                    <Image style = {{width: 17, height: 15, marginLeft: 30,}} source = {require('../images/edit.png')} />
+                    <Image style = {{width: 22, height: 19, marginLeft: 30, marginTop: Platform.OS == "android" ? -7: -5}} source = {require('../images/edit.png')} />
                 </View>
                 <View style = {{height: '100%', backgroundColor: "black", height: '20%', width: Dimensions.get('window').width, flexDirection: 'row', marginTop: 15, paddingTop: 20, marginRight: 30, height: 140}}>
                     <View style = {{
@@ -466,7 +483,7 @@ class Profile extends Component {
                     <View>
                         <TouchableOpacity
                             style = {{
-                                width: 345,
+                                width: Dimensions.get("screen").width - 60,
                                 height: 53,
                                 // backgroundColor: '#4ACDF4',
                                 alignSelf: 'center',

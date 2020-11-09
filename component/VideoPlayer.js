@@ -1,18 +1,44 @@
 import React, {Component} from 'react';
-import {View, Text, SafeAreaView, BackHandle, Image, Dimensions, TouchableOpacity, FlatList, ImageBackground} from 'react-native';
-
+import {View, Text, SafeAreaView, BackHandle, Image, Dimensions, TouchableOpacity, FlatList, ImageBackground, Platform, BackHandler} from 'react-native';
+import * as ScreenOrientation from 'expo-screen-orientation';
 import {Actions} from 'react-native-router-flux';
 import { Video } from 'expo-av';
 
 class VideoPlayer extends Component {
-    
+
+
     componentDidMount() {
+        BackHandler.addEventListener("hardwareBackPress", this.back);
         this.setState({currId: this.props.titlePage.id})
     }
 
     state = {
         currId: "",
     }
+
+    _videoRef;
+
+    back = () => {
+        Actions.Homepage();
+        return true;
+    };
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.back);
+    }
+
+    onFullscreenUpdate = async ({fullscreenUpdate}) => {
+        switch (fullscreenUpdate) {
+            case Video.FULLSCREEN_UPDATE_PLAYER_DID_PRESENT:
+                await ScreenOrientation.unlockAsync(); // only on Android required
+                break;
+            case Video.FULLSCREEN_UPDATE_PLAYER_WILL_DISMISS:
+                await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT) // only on Android required
+                break;
+        }
+    }
+
+    showVideoInFullscreen = async () => { await videoRef.current.presentFullscreenPlayer() }
 
     render() {
         return (
@@ -62,18 +88,24 @@ class VideoPlayer extends Component {
                         }}
                     >Video</Text>
                 </View>
-
+            
                 <Video
                     source={{ uri: this.props.titlePage.video_url }}
                     rate={1.0}
+                    onFullscreenUpdate={Platform.OS == "android" ? this.onFullscreenUpdate : () => {}}
                     volume={1.0}
                     isMuted={false}
                     resizeMode="cover"
                     shouldPlay = {true}
                     usePoster = {true}
+                    ref={(ref) => (this._videoRef = ref)}
                     style={{ marginTop: 20, width: Dimensions.get('window').width, height: 9*Dimensions.get('window').width/16, borderRadius: 10 }}
                     useNativeControls = {true}
-                    
+                    // onFullscreenUpdate={async () => {
+                    //     await ScreenOrientation.lockAsync(
+                    //         ScreenOrientation.OrientationLock.LANDSCAPE_LEFT,
+                    //     );
+                    // }}
                 />
 
                 <Text style = {{marginTop: 20, marginLeft: 20, color: "white", fontFamily: "poppinsBold", fontSize: 18, alignItems: 'center'}}>{this.props.titlePage.title}</Text>    
@@ -157,7 +189,7 @@ class VideoPlayer extends Component {
                                                 paddingLeft: 2,
                                                 paddingRight: 2,
                                         }}>
-                                        {item["video_duration"].toString().split(".")[0]}:{Math.round(("0."+item["video_duration"].toString().split(".")[1])*60)}
+                                        {item["video_duration"].toString().split(".")[0]}:{Math.round(("0."+item["video_duration"].toString().split(".")[1])*60).toString()}
                                         </Text>
                                             </ImageBackground>
                                             </View>

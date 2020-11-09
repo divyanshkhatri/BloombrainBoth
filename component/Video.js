@@ -9,6 +9,7 @@ class Video extends Component {
 
     backAction = () => {
         Actions.Homepage();
+        return true;
     };
 
     

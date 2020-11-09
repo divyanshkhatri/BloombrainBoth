@@ -7,7 +7,6 @@ class Gif extends Component {
     state = {
         email: "",
         time: Platform.OS == "android" ? 2800 : 3500,
-        interest: 'false'
     }
 
     componentDidMount() {
@@ -20,22 +19,10 @@ class Gif extends Component {
             else {
             }
         })
-        AsyncStorage.getItem('interest')
-        .then((value) => {
-            if(value) {
-                console.log("interest" + value);
-                this.setState({interest: value})
-            }
-            else {
-            }
-        })
         setTimeout(() => {
             if(this.state.email == "") {
                 Actions.LandingMain();
-            } else if(this.state.interest === 'false') {
-                console.log(this.state.interest)
-                Actions.Favourite();
-            } else if(this.state.interest === 'true' && this.state.email != "") {
+            } else if(this.state.email != "") {
                 Actions.Homepage();
             }
         }, this.state.time);

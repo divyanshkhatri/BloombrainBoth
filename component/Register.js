@@ -405,10 +405,11 @@ class Register extends Component {
                     <View
                         style = {{
                             backgroundColor: '#4ACDF4',
-                            width: 360,
+                            width: Dimensions.get("window").width - 50,
                             alignSelf: 'center',
-                            borderRadius: 15,
+                            borderRadius: 10,
                             height: 50,
+                            // flex: 1,
                             justifyContent: 'center',
                             marginTop: Platform.OS == "android" ? 30: 15
                         }}

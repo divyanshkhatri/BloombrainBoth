@@ -1,5 +1,22 @@
 import React, {Component} from 'react';
-import {View, Text, Image, Dimensions, SafeAreaView, FlatList, TouchableOpacity, BackHandler,TouchableWithoutFeedback, Alert, AsyncStorage, Platform} from 'react-native';
+import 
+    {
+        View, 
+        Text, 
+        Image,
+        Dimensions, 
+        SafeAreaView, 
+        ScrollView, 
+        FlatList, 
+        TouchableOpacity, 
+        BackHandler, 
+        Alert, 
+        ActivityIndicator, 
+        AsyncStorage, 
+        Platform,
+        ImageBackground
+    } from 'react-native';
+
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import { LinearGradient } from 'expo-linear-gradient';
 import {Actions} from 'react-native-router-flux';
@@ -21,6 +38,9 @@ class Hompage extends Component {
         return true;
     };
 
+    componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
+    }
 
     componentDidMount() {
         BackHandler.addEventListener("hardwareBackPress", this.backAction);
@@ -38,6 +58,7 @@ class Hompage extends Component {
             .then((responseJson) => {
                 // console.log(responseJson);
                 this.setState({profileData: responseJson})
+                this.setState({isLoading: false})
                 console.log(this.state.profileData);
             })
             .catch((error) => {
@@ -45,8 +66,8 @@ class Hompage extends Component {
                 console.error(error);
             });
 
-            let url1 = 'http://idirect.bloombraineducation.com/idirect/lms/homepage?id='+this.state.id;
-            // fetch(url1, {
+            // let picks_url = "http://idirect.bloombraineducation.com/idirect/lms/homepage?id=" + "8";
+            // fetch(picks_url, {
             //     method: 'POST',
             //     headers: {
             //         'Content-Type': 'multipart/form-data',
@@ -54,9 +75,9 @@ class Hompage extends Component {
             // })
             // .then((response) => response.json())
             // .then((responseJson) => {
-            //     // console.log(responseJson);
-            //     this.setState({profileData: responseJson})
-            //     console.log(this.state.profileData);
+            //     console.log(responseJson["1"]);
+            //     this.setState({carouselItems: responseJson["1"]})
+            //     // console.log(this.state.data["1"]);
             // })
             // .catch((error) => {
             //     this.setState({login: false})
@@ -68,11 +89,10 @@ class Hompage extends Component {
         .catch((e) => console.log(e));
     }
     
-    componentWillUnmount() {
-        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
-    }
 
     state = {
+        isLoading: true,
+        data: {},
         profileData: {},
         showModalCong: false,
         showModal: false,
@@ -80,10 +100,11 @@ class Hompage extends Component {
         academics: false,
         invention: false,
         communication: false,
-        carouselItems: [
+        carouselItems: 
+        [
             {
                 "id": 1,
-                image: require("../images/picks.png"),
+
                 "teacher_name": "Bhavika Chopra", 
                 "video_duration": 32.833333333333336, 
                 "course": "science", 
@@ -96,7 +117,7 @@ class Hompage extends Component {
             },
             {
                 "id": 2,
-                image: require("../images/picks.png"),
+
                 "teacher_name": "Bhavika Chopra", 
                 "video_duration": 32.833333333333336, 
                 "course": "science", 
@@ -109,7 +130,7 @@ class Hompage extends Component {
             },
             {
                 "id": 3,
-                image: require("../images/picks.png"),
+
                 "teacher_name": "Bhavika Chopra", 
                 "video_duration": 32.833333333333336, 
                 "course": "science", 
@@ -122,7 +143,7 @@ class Hompage extends Component {
             },
             {
                 "id": 4,
-                image: require("../images/picks.png"),
+
                 "teacher_name": "Bhavika Chopra", 
                 "video_duration": 32.833333333333336, 
                 "course": "science", 
@@ -135,7 +156,7 @@ class Hompage extends Component {
             },
             {
                 "id": 5,
-                image: require("../images/picks.png"),
+
                 "teacher_name": "Bhavika Chopra", 
                 "video_duration": 32.633333333333336, 
                 "course": "science", 
@@ -343,7 +364,7 @@ class Hompage extends Component {
                     // borderWidth: 3,
                     paddingBottom: 4,
                 }}
-                dotsLength={carouselItems.length}
+                dotsLength={carouselItems ? carouselItems.length : 0}
                 activeDotIndex={activeIndex}
                 //   containerStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.75)' }}
                 dotStyle={{
@@ -381,7 +402,15 @@ class Hompage extends Component {
                 paddingTop: Platform.OS === 'android' ? 40 : 0,
                 // alignItems: 'center'
                 }}>
-
+                
+                {this.state.isLoading ?  
+                   ( 
+                     <View style = {{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                        <Image source={require("../images/loader.gif")} style = {{width: 50, height: 50}} />
+                    </View>
+                    
+                    ) : (
+                <ScrollView>
                 <Modal 
                     isVisible = {this.state.invention}
                     animationIn = "pulse"
@@ -1235,7 +1264,10 @@ class Hompage extends Component {
                         </View>
                     </Modal>
                 
-                <TouchableOpacity onPress = {() => {Actions.Profile()}}>
+                <TouchableOpacity onPress = {() => {
+                    Actions.pop();
+                    Actions.Profile();
+                    }}>
                     <View 
                         style = {{
                         // flex: 1,
@@ -1264,7 +1296,7 @@ class Hompage extends Component {
                         >
                         <Text 
                         style = {{
-                            fontFamily : "poppinsMedium",
+                            fontFamily : "poppinsSemiBold",
                             fontSize: 14,
                             color: 'white',
                             height: 18,
@@ -1284,74 +1316,145 @@ class Hompage extends Component {
                         </View>
                     </View>
                 </TouchableOpacity>
-                <LinearGradient
-            // Button Linear Gradient
-                    colors={['#1285D1', '#32C1ED', '#6EDEFF']}
-                    start={[0, 1]} end={[1, 0]}
-                    style = {{
-                        marginTop: Platform.OS == "android" ? 10 : 0,
-                        alignSelf: 'center',
-                        alignItems: 'center',
-                        flexDirection: 'row',
-                        width: this.windowWidth-32,
-                        // borderColor: 'white',
-                        // borderWidth: 1,
-                        height: 80,
-                        paddingLeft: 20,
-                        borderRadius: 16,
-                        overflow: 'hidden',
-
-                        // justifyContent: "center"
-                    }}>
-                <Image 
-                    style = {{
-                        width: 20,
-                        height: 20
-                    }}
-                    source = {require("../images/wifi.png")} 
-                />
-                {/* <TouchableOpacity 
-                    style = {{
-                        boderWidth: 2,
-                        borderColor: 'white'
-                    }}
-                    onPress = {() => {
-                        this.setState({showModalCong: true})
-                        console.log(this.state.showModalCong);
-                    }}> */}
-                    <Text
+                {Platform.isPad ? 
+                
+                    <LinearGradient
+                // Button Linear Gradient
+                        colors={['#1285D1', '#32C1ED', '#6EDEFF']}
+                        start={[0, 1]} end={[1, 0]}
                         style = {{
-                            marginLeft: 8,
-                            fontFamily: 'poppinsMedium',
-                            fontSize: 16,
-                            color: 'white'
-                        }}
-                    >Your Class is Live Now!</Text>
-                {/* </TouchableOpacity> */}
-                <View
-                    style = {{
-                        flex: 1,
-                        flexDirection: 'row',
-                        justifyContent: 'flex-end',
-                        paddingRight: 20,
-                    }}
-                >
-                <Image 
-                    style = {{
-                        // flexShrink: 1,
-                        // flex: 1,
-                        width: 12,
-                        height: 20,
-                       
-                        // justifyContent: 'flex-end'
-                        // borderWidth: 2,
-                        // borderColor: 'purple',
-                    }}
-                    source = {require("../images/arrow.png")} 
-                />
-                </View>
-                </LinearGradient>
+                            marginTop: Platform.OS == "android" ? 10 : 0,
+                            alignSelf: 'center',
+                            alignItems: 'center',
+                            flexDirection: 'row',
+                            width: this.windowWidth-32,
+                            // borderColor: 'white',
+                            // borderWidth: 1,
+                            height: 80,
+                            paddingLeft: 20,
+                            borderRadius: 16,
+                            overflow: 'hidden',
 
+                            // justifyContent: "center"
+                        }}>
+                    <Image 
+                        style = {{
+                            width: 20,
+                            height: 20
+                        }}
+                        source = {require("../images/wifi.png")} 
+                    />
+                    {/* <TouchableOpacity 
+                        style = {{
+                            boderWidth: 2,
+                            borderColor: 'white'
+                        }}
+                        onPress = {() => {
+                            this.setState({showModalCong: true})
+                            console.log(this.state.showModalCong);
+                        }}> */}
+                        <Text
+                            style = {{
+                                marginLeft: 8,
+                                fontFamily: 'poppinsMedium',
+                                fontSize: 16,
+                                color: 'white'
+                            }}
+                        >Your Class is Live Now!</Text>
+                    {/* </TouchableOpacity> */}
+                    <View
+                        style = {{
+                            flex: 1,
+                            flexDirection: 'row',
+                            justifyContent: 'flex-end',
+                            paddingRight: 20,
+                        }}
+                    >
+                    <Image 
+                        style = {{
+                            // flexShrink: 1,
+                            // flex: 1,
+                            width: 12,
+                            height: 20,
+                        
+                            // justifyContent: 'flex-end'
+                            // borderWidth: 2,
+                            // borderColor: 'purple',
+                        }}
+                        source = {require("../images/arrow.png")} 
+                    />
+                    </View>
+                    </LinearGradient>
+                : 
+                        
+
+                    <ImageBackground
+                // Button Linear Gradient
+                        source = {require("../images/live1.png")}
+                        style = {{
+                            marginTop: Platform.OS == "android" ? 10 : 0,
+                            alignSelf: 'center',
+                            alignItems: 'center',
+                            flexDirection: 'row',
+                            width: Dimensions.get("window").width - 32,
+                            // borderColor: 'white',
+                            // borderWidth: 1,
+                            height: 80,
+                            paddingLeft: 20,
+                            borderRadius: 16,
+                            overflow: 'hidden',
+                        }}    
+                        // resizeMode = {"contain"}
+                    >
+                    <Image 
+                        style = {{
+                            width: 20,
+                            height: 20
+                        }}
+                        source = {require("../images/wifi.png")} 
+                    />
+                    {/* <TouchableOpacity 
+                        style = {{
+                            boderWidth: 2,
+                            borderColor: 'white'
+                        }}
+                        onPress = {() => {
+                            this.setState({showModalCong: true})
+                            console.log(this.state.showModalCong);
+                        }}> */}
+                        <Text
+                            style = {{
+                                marginLeft: 8,
+                                fontFamily: 'poppinsMedium',
+                                fontSize: 16,
+                                color: 'white'
+                            }}
+                        >Your Class is Live Now!</Text>
+                    {/* </TouchableOpacity> */}
+                    <View
+                        style = {{
+                            flex: 1,
+                            flexDirection: 'row',
+                            justifyContent: 'flex-end',
+                            paddingRight: 20,
+                        }}
+                    >
+                    <Image 
+                        style = {{
+                            // flexShrink: 1,
+                            // flex: 1,
+                            width: 12,
+                            height: 20,
+                        
+                            // justifyContent: 'flex-end'
+                            // borderWidth: 2,
+                            // borderColor: 'purple',
+                        }}
+                        source = {require("../images/arrow.png")} 
+                    />
+                    </View>
+                    </ImageBackground>
+                }
                 <Text
                     style = {{
                         marginTop: Platform.OS == "android" ? 30 : 20, 
@@ -1382,7 +1485,8 @@ class Hompage extends Component {
                                     borderBottomColor: '#151515'
                                     }}>
                                     <Image
-                                        source = {{uri: item["thumbnail_url"]}} 
+                                        // source = {{uri: item["thumbnail_url"] == false ? "https://www.bloombraineducation.com/assets/images/youtube_logo/2.jpg" : item["thumbnail_url"]}} 
+                                        source = {require("../images/picks.png")}
                                         style = {{
                                             borderRadius: 15,
                                             borderBottomRightRadius: 0,
@@ -1414,7 +1518,7 @@ class Hompage extends Component {
                                         // borderColor: 'white',
                                         color: '#707070',
                                     }}>
-                                        {item.course}{">"}Class {item.class_data}</Text>
+                                        Class {item.class_data} {">"} {item.course}</Text>
                                 </View>
                             </TouchableOpacity>
                         )
@@ -1446,13 +1550,17 @@ class Hompage extends Component {
                     style = {{
                         alignSelf: 'center'
                     }}
+                    ListFooterComponent = {<View style = {{marginRight: Platform.OS == "android" ? 20 : 0}}></View>}
                     horizontal = {true}
                     data={this.state.categories}
                     renderItem={this.renderCategories}
                     keyExtractor={(item) => item.id}
                     contentInset={{ right: 16, top: 0, left: 0, bottom: 0 }}
                 />
+            </ScrollView>
+            )}
             </SafeAreaView>
+
         )
     }
 }

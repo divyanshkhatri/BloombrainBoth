@@ -4,6 +4,7 @@
   "expo": {
     "name": "BloomBrain",
     "slug": "BloomBrain",
+    "orientation": "portrait",
     "splash": {
       "backgroundColor": "#000000",
       "image": "./images/img.png"
