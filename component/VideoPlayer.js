@@ -15,7 +15,6 @@ class VideoPlayer extends Component {
     }
 
     render() {
-        console.log(this.props.videos)
         return (
             <SafeAreaView
                 style = {{
@@ -78,8 +77,8 @@ class VideoPlayer extends Component {
                 />
 
                 <Text style = {{marginTop: 20, marginLeft: 20, color: "white", fontFamily: "poppinsBold", fontSize: 18, alignItems: 'center'}}>{this.props.titlePage.title}</Text>    
-                <View>
-                    <View style = {{justifyContent: 'space-between', flexDirection: 'row', margin: 20}}>
+                <View style = {{borderBottomColor: '#242424', bordeRadius: 10, borderBottomWidth: 2, marginBottom: 0, marginLeft: 20, marginRight: 20, marginTop: 0}}>
+                    <View style = {{justifyContent: "space-between", flexDirection: 'row', margin: 20, marginLeft: 0, marginRight: 0, maginBottom: 0}}>
                         <View style = {{flexDirection: 'row'}}>
                             <Image source = {require('../images/faculty.png')} style = {{width: 28.95, height: 23.16, marginRight: 8}}/>
                             <View>    
@@ -134,9 +133,11 @@ class VideoPlayer extends Component {
                                                     // marginTop: 20,
                                                     // marginRight: 20,
                                                     width: 150, 
-                                                    height: 100, 
+                                                    height: 90, 
                                                     borderRadius: 10,
                                                     marginBottom: 0,
+                                                    borderBottomRightRadius: 0,
+                                                    borderTopRightRadius: 0,
                                                     overflow: 'hidden',
                                                     position: 'relative',
                                                 }}
@@ -162,35 +163,39 @@ class VideoPlayer extends Component {
                                             </View>
                                             <View style = {{
                                                 flexShrink: 1,
-                                                justifyContent: 'space-around', 
+                                                // justifyContent: "space-between", 
+                                                height: 90,
+                                                padding:12,
                                             }}>
-        
-                                                <Text style = {{
-                                                    color: 'white',
-                                                    fontFamily: 'poppinsSemiBold',
-                                                    paddingLeft: 12,
-                                                    paddingRight: 50,
-                                                    borderColor: 'white',
-                                                    borderWidth: 2,
-                                                    flexShrink: 1,
-                                                    fontSize: 13,
-                                                    // paddingTop:10
-                                                }}>
-                                                    {item["description"]}
+                                                <View style = {{height: 55}}>
+                                                    <Text style = {{
+                                                        color: 'white',
+                                                        fontFamily: 'poppinsSemiBold',
+                                                        paddingRight: 10,
+                                                        // borderColor: 'white',
+                                                        // borderWidth: 2,
+                                                        flexShrink: 1,
+                                                        fontSize: 13,
+                                                        // paddingTop:10
+                                                    }}>
+                                                        {item["description"]}
+                                                    </Text>
+                                                    <Text style = {{marginTop: 4, color: "white", fontFamily: "poppinsSemiBold", fontSize: 8}}>
+                                                    {item.course}{">"}Class {item.class_data}
                                                 </Text>
-                                            <View style = {{flexDirection: 'row', justifyContent: 'space-between'}}>
+                                                </View>
+                                            <View style = {{flexDirection: 'row'}}>
                                                 <Text style = {{
-                                                    color: 'white',
+                                                    color: 'gray',
                                                     fontFamily: 'poppinsSemiBold',
-                                                    paddingLeft: 12,
-                                                    paddingRight: 12,
-                                                            // borderColor: 'white',
-                                                            // borderWidth: 2,
+                                                    // borderColor: 'white',
+                                                    // borderWidth: 2,
                                                     flexShrink: 1,
                                                     fontSize: 10,
+                                                    height: 20
                                                     // paddingTop: 29
                                                 }}>
-                                                    {item.date}
+                                                    {item.teacher_name}
                                                 </Text>
                                                 
                                             </View>

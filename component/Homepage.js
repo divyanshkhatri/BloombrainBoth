@@ -44,6 +44,26 @@ class Hompage extends Component {
                 this.setState({login: false})
                 console.error(error);
             });
+
+            let url1 = 'http://idirect.bloombraineducation.com/idirect/lms/homepage?id='+this.state.id;
+            // fetch(url1, {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'multipart/form-data',
+            //     },
+            // })
+            // .then((response) => response.json())
+            // .then((responseJson) => {
+            //     // console.log(responseJson);
+            //     this.setState({profileData: responseJson})
+            //     console.log(this.state.profileData);
+            // })
+            // .catch((error) => {
+            //     this.setState({login: false})
+            //     console.error(error);
+            // });
+
+
         })
         .catch((e) => console.log(e));
     }
